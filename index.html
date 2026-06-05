@@ -125,6 +125,21 @@
   .accordion-body .notice li::before { content: "※ "; color: #e53935; }
   .sub-step-num { display: inline-block; background: #03c75a; color: #fff; font-size: 11px; border-radius: 2px; padding: 1px 6px; margin-right: 4px; }
 
+  /* 네이버페이 설정 박스 */
+  .npay-setting-wrap { margin-top: 32px; background: #fff; border: 1px solid #e0e0e0; border-radius: 6px; padding: 30px 36px 36px; max-width: 640px; }
+  .npay-setting-title { font-size: 18px; font-weight: bold; color: #222; margin-bottom: 4px; }
+  .npay-setting-title .required-note { font-size: 12px; font-weight: normal; color: #f56; margin-left: 8px; }
+  .npay-setting-title .required-note::before { content: "✓"; margin-right: 2px; }
+  .npay-setting-row { display: flex; align-items: center; margin-top: 20px; gap: 16px; }
+  .npay-setting-label { width: 130px; min-width: 130px; font-size: 13px; color: #444; display: flex; align-items: center; gap: 4px; }
+  .npay-setting-label .check { color: #f56; font-size: 13px; }
+  .npay-setting-input { flex: 1; border: 1px solid #d0d0d0; border-radius: 4px; padding: 9px 12px; font-size: 13px; color: #333; background: #fff; outline: none; }
+  .npay-setting-note { font-size: 12px; color: #999; margin-top: 18px; }
+  .npay-setting-note::before { content: "· "; }
+  .npay-setting-btn-row { display: flex; justify-content: center; margin-top: 28px; }
+  .npay-setting-btn { background: #555; color: #fff; border: none; border-radius: 4px; padding: 11px 44px; font-size: 14px; cursor: pointer; font-family: inherit; }
+  .npay-setting-btn:hover { background: #333; }
+
   /* 하단 버튼 */
   .btn-wrap { display: flex; justify-content: center; gap: 10px; margin-top: 40px; }
   .btn { padding: 12px 30px; border: none; border-radius: 4px; font-size: 14px; cursor: pointer; font-family: inherit; }
@@ -471,6 +486,27 @@
   <div class="btn-wrap">
     <button class="btn btn-gray" onclick="window.print()">신청 가이드 내려받기</button>
     <button class="btn btn-green">주문형 네이버페이 신청</button>
+  </div>
+
+  <!-- 네이버페이 설정 -->
+  <div class="npay-setting-wrap">
+    <div class="npay-setting-title">네이버페이 설정 <span class="required-note">표시 필수항목</span></div>
+    <div class="npay-setting-row">
+      <div class="npay-setting-label"><span class="check">✓</span> 파트너ID</div>
+      <input class="npay-setting-input" type="text" value="np_slrep776147">
+    </div>
+    <div class="npay-setting-row">
+      <div class="npay-setting-label"><span class="check">✓</span> CLIENT_ID</div>
+      <input class="npay-setting-input" type="text" value="0L1Ro65VkG1rnWzMfLmp">
+    </div>
+    <div class="npay-setting-row">
+      <div class="npay-setting-label"><span class="check">✓</span> CLIENT_SECRET</div>
+      <input class="npay-setting-input" type="text" value="t43lpTMMBv">
+    </div>
+    <div class="npay-setting-note">네이버페이 승인 완료 이후, 메일로 수신받은 정보로 기재하시고 적용을 눌러주세요.</div>
+    <div class="npay-setting-btn-row">
+      <button class="npay-setting-btn">적용</button>
+    </div>
   </div>
 
 </div><!-- /page-wrap -->

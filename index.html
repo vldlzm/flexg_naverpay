@@ -126,7 +126,7 @@
   .sub-step-num { display: inline-block; background: #03c75a; color: #fff; font-size: 11px; border-radius: 2px; padding: 1px 6px; margin-right: 4px; }
 
   /* 네이버페이 설정 박스 */
-  .npay-setting-wrap { margin-top: 32px; background: #fff; border: 1px solid #e0e0e0; border-radius: 6px; padding: 30px 36px 36px; max-width: 640px; }
+  .npay-setting-wrap { margin-top: 32px; background: #fff; border: 1px solid #e0e0e0; border-radius: 6px; padding: 30px 36px 36px; }
   .npay-setting-title { font-size: 18px; font-weight: bold; color: #222; margin-bottom: 4px; }
   .npay-setting-title .required-note { font-size: 12px; font-weight: normal; color: #f56; margin-left: 8px; }
   .npay-setting-title .required-note::before { content: "✓"; margin-right: 2px; }
@@ -492,16 +492,20 @@
   <div class="npay-setting-wrap">
     <div class="npay-setting-title">네이버페이 설정 <span class="required-note">표시 필수항목</span></div>
     <div class="npay-setting-row">
-      <div class="npay-setting-label"><span class="check">✓</span> 파트너ID</div>
-      <input class="npay-setting-input" type="text" value="np_slrep776147">
+      <div class="npay-setting-label"><span class="check">✓</span> Shop ID</div>
+      <input class="npay-setting-input" type="text" placeholder="">
     </div>
     <div class="npay-setting-row">
-      <div class="npay-setting-label"><span class="check">✓</span> CLIENT_ID</div>
-      <input class="npay-setting-input" type="text" value="0L1Ro65VkG1rnWzMfLmp">
+      <div class="npay-setting-label"><span class="check">✓</span> 연동 인증키</div>
+      <input class="npay-setting-input" type="text" placeholder="">
     </div>
     <div class="npay-setting-row">
-      <div class="npay-setting-label"><span class="check">✓</span> CLIENT_SECRET</div>
-      <input class="npay-setting-input" type="text" value="t43lpTMMBv">
+      <div class="npay-setting-label"><span class="check">✓</span> 버튼 인증키</div>
+      <input class="npay-setting-input" type="text" placeholder="">
+    </div>
+    <div class="npay-setting-row">
+      <div class="npay-setting-label"><span class="check">✓</span> 네이버 공통 인증키</div>
+      <input class="npay-setting-input" type="text" placeholder="">
     </div>
     <div class="npay-setting-note">네이버페이 승인 완료 이후, 메일로 수신받은 정보로 기재하시고 적용을 눌러주세요.</div>
     <div class="npay-setting-btn-row">

@@ -98,6 +98,7 @@
   .accordion-arrow.open { transform: rotate(180deg); }
   .accordion-body { display: none; padding: 10px 4px 14px; }
   .accordion-body.open { display: block; }
+  .accordion-item > img { display: none; }
   .accordion-body ul { list-style: none; }
   .accordion-body ul li { color: #555; line-height: 1.8; font-size: 13px; }
   .accordion-body ul li::before { content: "· "; }
@@ -224,7 +225,6 @@
         <ul>
           <li>사업자등록증 사본 1부 (최근 1년 이내 발급분)</li>
           <li>법인 등기부등본 사본 1부 (최근 3개월 이내 발급분)</li>
-          <li>법인 인감등록증 사본 1부</li>
           <li>주주명부 1부</li>
           <li>비영리법인의 경우 비영리법인 설립목적 근거 서류 1부 추가</li>
         </ul>
@@ -468,6 +468,9 @@ function toggleAccordion(header) {
   const isOpen = body.classList.contains('open');
   body.classList.toggle('open', !isOpen);
   arrow.classList.toggle('open', !isOpen);
+  header.parentElement.querySelectorAll(':scope > img').forEach(img => {
+    img.style.display = isOpen ? 'none' : 'block';
+  });
 }
 </script>
 </body>

@@ -8,6 +8,7 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; font-size: 13px; color: #333; background: #fff; }
   a { color: #03c75a; text-decoration: none; }
+  a:hover { text-decoration: underline; }
 
   /* 3열 레이아웃 */
   .layout-wrap { display: flex; max-width: 1600px; margin: 0 auto; min-height: 100vh; }
@@ -37,34 +38,50 @@
   .tab-btn.active { background: #03c75a; color: #fff; font-weight: bold; border-color: #03c75a; }
   .tab-btn:not(.active):hover { background: #eafaf2; color: #03c75a; }
 
-  /* 섹션 */
-  .section { margin-bottom: 40px; }
-  .section-title { font-size: 16px; font-weight: bold; color: #222; margin-bottom: 14px; }
+  /* 섹션 타이틀 */
+  .section-title { font-size: 18px; font-weight: bold; color: #222; padding-bottom: 14px; border-bottom: 2px solid #333; margin-bottom: 0; }
 
-  /* 네이버페이 설정 박스 */
-  .npay-setting-wrap { background: #fff; border: 1px solid #e0e0e0; border-radius: 6px; padding: 30px 36px 36px; }
-  .npay-setting-title { font-size: 18px; font-weight: bold; color: #222; margin-bottom: 4px; }
-  .npay-setting-title .required-note { font-size: 12px; font-weight: normal; color: #f56; margin-left: 8px; }
-  .npay-setting-title .required-note::before { content: "✓"; margin-right: 2px; }
-  .npay-setting-row { display: flex; align-items: center; margin-top: 20px; gap: 16px; }
-  .npay-setting-label { width: 160px; min-width: 160px; font-size: 13px; color: #444; display: flex; align-items: center; gap: 4px; }
-  .npay-setting-label .check { color: #f56; font-size: 13px; }
-  .npay-setting-input { flex: 1; border: 1px solid #d0d0d0; border-radius: 4px; padding: 9px 12px; font-size: 13px; color: #333; background: #fff; outline: none; }
-  .npay-toggle-row { display: flex; align-items: center; margin-top: 18px; gap: 12px; }
-  .npay-toggle-label { font-size: 13px; color: #444; min-width: 160px; display: flex; align-items: center; gap: 6px; }
-  .npay-toggle { position: relative; display: inline-block; width: 46px; height: 24px; flex-shrink: 0; }
-  .npay-toggle input { opacity: 0; width: 0; height: 0; }
-  .npay-toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #ccc; border-radius: 24px; transition: 0.2s; }
-  .npay-toggle-slider::before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background: #fff; border-radius: 50%; transition: 0.2s; }
-  .npay-toggle input:checked + .npay-toggle-slider { background: #03c75a; }
-  .npay-toggle input:checked + .npay-toggle-slider::before { transform: translateX(22px); }
-  .npay-toggle-text { font-size: 13px; color: #555; }
-  .npay-setting-note { font-size: 12px; color: #999; margin-top: 20px; }
-  .npay-setting-btn-row { display: flex; justify-content: center; margin-top: 28px; }
-  .npay-setting-btn { background: #555; color: #fff; border: none; border-radius: 4px; padding: 11px 44px; font-size: 14px; cursor: pointer; font-family: inherit; }
-  .npay-setting-btn:hover { background: #333; }
+  /* 설정 테이블 */
+  .setting-table { width: 100%; border-collapse: collapse; }
+  .setting-table tr { border-bottom: 1px solid #e8e8e8; }
+  .setting-table tr:first-child { border-top: none; }
+  .setting-table th { background: #f7f7f7; padding: 16px 20px; font-weight: normal; color: #444; text-align: left; width: 180px; min-width: 180px; vertical-align: top; font-size: 13px; border-right: 1px solid #e8e8e8; }
+  .setting-table td { padding: 14px 20px; color: #333; vertical-align: middle; }
 
-  .divider { border: none; border-top: 1px solid #e0e0e0; margin: 36px 0; }
+  /* OFF/ON 토글 */
+  .toggle-wrap { display: inline-flex; align-items: center; gap: 7px; }
+  .toggle-side-label { font-size: 12px; color: #999; }
+  .toggle-sw { position: relative; display: inline-block; width: 42px; height: 22px; }
+  .toggle-sw input { opacity: 0; width: 0; height: 0; }
+  .toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #ccc; border-radius: 22px; transition: 0.2s; }
+  .toggle-slider::before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background: #fff; border-radius: 50%; transition: 0.2s; }
+  .toggle-sw input:checked + .toggle-slider { background: #03c75a; }
+  .toggle-sw input:checked + .toggle-slider::before { transform: translateX(20px); }
+
+  /* 설명 텍스트 */
+  .setting-info { font-size: 12px; color: #555; margin-left: 10px; }
+  .setting-info-block { display: block; font-size: 12px; color: #555; margin-top: 6px; line-height: 1.7; }
+  .setting-info-block.green { color: #03c75a; }
+  .setting-info-block.red { color: #e53935; font-weight: 500; }
+
+  /* 드롭다운 */
+  .setting-select { border: 1px solid #ccc; border-radius: 3px; padding: 6px 10px; font-size: 13px; font-family: inherit; color: #333; background: #fff; cursor: pointer; }
+
+  /* 체크박스 행 */
+  .checkbox-group { display: flex; gap: 20px; align-items: center; }
+  .checkbox-group label { display: flex; align-items: center; gap: 5px; font-size: 13px; color: #444; cursor: pointer; }
+  .checkbox-group input[type="checkbox"] { width: 14px; height: 14px; cursor: pointer; }
+
+  /* 부계정 찾기 버튼 */
+  .btn-sub { background: #555; color: #fff; border: none; border-radius: 3px; padding: 8px 16px; font-size: 13px; cursor: pointer; font-family: inherit; }
+  .btn-sub:hover { background: #333; }
+
+  /* 하단 저장 버튼 */
+  .btn-wrap { display: flex; justify-content: center; gap: 10px; margin-top: 30px; }
+  .btn { padding: 12px 40px; border: none; border-radius: 4px; font-size: 14px; cursor: pointer; font-family: inherit; }
+  .btn-green { background: #03c75a; color: #fff; font-weight: bold; }
+  .btn-gray { background: #888; color: #fff; }
+  .btn:hover { opacity: 0.88; }
 </style>
 </head>
 <body>
@@ -82,65 +99,132 @@
   <!-- 중앙 메인 -->
   <div class="page-wrap">
 
-    <!-- 페이지 타이틀 -->
     <div class="page-title">네이버페이</div>
 
-    <!-- 탭 -->
     <div class="tab-wrap">
       <button class="tab-btn" onclick="location.href='naverpay_payment_type.html'">결제형 네이버페이</button>
       <button class="tab-btn active">상품등록/수정</button>
     </div>
 
-    <!-- 네이버페이 설정 -->
-    <div class="section">
-      <div class="section-title">상품등록/수정</div>
-      <div class="npay-setting-wrap">
-        <div class="npay-setting-title">네이버페이 설정 <span class="required-note">표시 필수항목</span></div>
-        <div class="npay-setting-row">
-          <div class="npay-setting-label"><span class="check">✓</span> Shop ID</div>
-          <input class="npay-setting-input" type="text" placeholder="">
-        </div>
-        <div class="npay-setting-row">
-          <div class="npay-setting-label"><span class="check">✓</span> 연동 인증키</div>
-          <input class="npay-setting-input" type="text" placeholder="">
-        </div>
-        <div class="npay-setting-row">
-          <div class="npay-setting-label"><span class="check">✓</span> 버튼 인증키</div>
-          <input class="npay-setting-input" type="text" placeholder="">
-        </div>
-        <div class="npay-setting-row">
-          <div class="npay-setting-label"><span class="check">✓</span> 네이버 공통 인증키</div>
-          <input class="npay-setting-input" type="text" placeholder="">
-        </div>
-        <div class="npay-toggle-row">
-          <div class="npay-toggle-label">구매버튼 노출</div>
-          <label class="npay-toggle">
-            <input type="checkbox" checked onchange="this.closest('.npay-toggle-row').querySelector('.npay-toggle-text').textContent = this.checked ? '노출함' : '노출안함'">
-            <span class="npay-toggle-slider"></span>
-          </label>
-          <span class="npay-toggle-text">노출함</span>
-        </div>
-        <div class="npay-toggle-row">
-          <div class="npay-toggle-label">주문연동</div>
-          <label class="npay-toggle">
-            <input type="checkbox" checked onchange="this.closest('.npay-toggle-row').querySelector('.npay-toggle-text').textContent = this.checked ? '사용함' : '사용안함'">
-            <span class="npay-toggle-slider"></span>
-          </label>
-          <span class="npay-toggle-text">사용함</span>
-        </div>
-        <div class="npay-toggle-row">
-          <div class="npay-toggle-label">주문형 네이버페이 노출</div>
-          <label class="npay-toggle">
-            <input type="checkbox" checked onchange="this.closest('.npay-toggle-row').querySelector('.npay-toggle-text').textContent = this.checked ? 'ON' : 'OFF'">
-            <span class="npay-toggle-slider"></span>
-          </label>
-          <span class="npay-toggle-text">ON</span>
-        </div>
-        <div class="npay-setting-note">- 네이버페이 승인 완료 이후, 메일로 수신받은 정보로 기재하시고 적용을 눌러주세요.</div>
-      </div>
-      <div class="npay-setting-btn-row">
-        <button class="npay-setting-btn">적용</button>
-      </div>
+    <div class="section-title">기타설정</div>
+
+    <table class="setting-table">
+      <tr>
+        <th>상세페이지 레이아웃</th>
+        <td>
+          <select class="setting-select">
+            <option>기본 레이아웃</option>
+          </select>
+          <span class="setting-info">① <a href="#">상품 상세페이지 설정</a>에서 추가하신 레이아웃을 해당 상품에 적용하실 수 있습니다.</span>
+        </td>
+      </tr>
+      <tr>
+        <th>상품 기본정보 숨김</th>
+        <td>
+          <div class="toggle-wrap">
+            <span class="toggle-side-label">OFF</span>
+            <label class="toggle-sw">
+              <input type="checkbox" onchange="updateToggleText(this, '상품 기본정보 숨김')">
+              <span class="toggle-slider"></span>
+            </label>
+            <span class="toggle-side-label">ON</span>
+          </div>
+          <span class="setting-info">① 상품 상세페이지의 구매 관련 정보를 숨김 처리할 수 있습니다.</span>
+        </td>
+      </tr>
+      <tr>
+        <th>구매후기 숨김</th>
+        <td>
+          <div class="toggle-wrap">
+            <span class="toggle-side-label">OFF</span>
+            <label class="toggle-sw">
+              <input type="checkbox">
+              <span class="toggle-slider"></span>
+            </label>
+            <span class="toggle-side-label">ON</span>
+          </div>
+          <span class="setting-info">① 구매후기 노출 여부를 설정할 수 있습니다.</span>
+        </td>
+      </tr>
+      <tr>
+        <th>상품문의 숨김</th>
+        <td>
+          <div class="toggle-wrap">
+            <span class="toggle-side-label">OFF</span>
+            <label class="toggle-sw">
+              <input type="checkbox">
+              <span class="toggle-slider"></span>
+            </label>
+            <span class="toggle-side-label">ON</span>
+          </div>
+          <span class="setting-info">① 상품문의 노출 여부를 설정할 수 있습니다.</span>
+        </td>
+      </tr>
+      <tr>
+        <th>상품 수치 표시</th>
+        <td>
+          <div class="checkbox-group">
+            <label><input type="checkbox"> 상품 구매 수</label>
+            <label><input type="checkbox"> 구매후기 수</label>
+            <label><input type="checkbox"> 찜하기 수</label>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>구매하기 버튼 변경</th>
+        <td>
+          <div class="toggle-wrap">
+            <span class="toggle-side-label">OFF</span>
+            <label class="toggle-sw">
+              <input type="checkbox">
+              <span class="toggle-slider"></span>
+            </label>
+            <span class="toggle-side-label">ON</span>
+          </div>
+          <span class="setting-info">① 구매하기 버튼을 다른 용도의 버튼으로 숨김 처리할 수 있습니다.</span>
+        </td>
+      </tr>
+      <tr>
+        <th>상품 담당자</th>
+        <td>
+          <button class="btn-sub">부계정 찾기 ›</button>
+        </td>
+      </tr>
+      <tr>
+        <th>선물하기</th>
+        <td>
+          <div class="toggle-wrap">
+            <span class="toggle-side-label">OFF</span>
+            <label class="toggle-sw">
+              <input type="checkbox">
+              <span class="toggle-slider"></span>
+            </label>
+            <span class="toggle-side-label">ON</span>
+          </div>
+          <span class="setting-info-block green">① 상품의 상세 정보 화면에 선물하기 버튼이 자동으로 노출됩니다.</span>
+          <span class="setting-info-block red">① 선물하기는 [추가 배송비]가 적용되지 않습니다.</span>
+          <span class="setting-info-block">① 주문자가 상품을 직접 수령하지 않고, 지정한 수령인에게 선물 수령 링크를 전달하여 배송 정보를 입력받습니다.</span>
+        </td>
+      </tr>
+      <tr>
+        <th>주문형 네이버페이 노출</th>
+        <td>
+          <div class="toggle-wrap">
+            <span class="toggle-side-label">OFF</span>
+            <label class="toggle-sw">
+              <input type="checkbox" id="npay-toggle" onchange="document.getElementById('npay-status').textContent = this.checked ? 'ON 상태 - 네이버페이 주문형 버튼이 상품 상세페이지에 노출됩니다.' : 'OFF 상태 - 네이버페이 주문형 버튼이 노출되지 않습니다.'">
+              <span class="toggle-slider"></span>
+            </label>
+            <span class="toggle-side-label">ON</span>
+          </div>
+          <span class="setting-info-block" id="npay-status">① 상품 상세페이지에서 주문형 네이버페이 구매 버튼 노출 여부를 설정합니다.</span>
+        </td>
+      </tr>
+    </table>
+
+    <div class="btn-wrap">
+      <button class="btn btn-gray">취소</button>
+      <button class="btn btn-green">저장</button>
     </div>
 
   </div><!-- /page-wrap -->

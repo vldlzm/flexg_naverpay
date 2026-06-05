@@ -165,6 +165,7 @@
     <div class="index-label">Index</div>
     <nav>
       <a class="index-item" onclick="navClick('intro', this)">주문형 네이버페이란?</a>
+      <a class="index-item" onclick="navClick('product-edit', this)">상품등록/수정</a>
     </nav>
   </aside>
 
@@ -515,12 +516,12 @@
       <input class="npay-setting-input" type="text" placeholder="">
     </div>
     <div class="npay-toggle-row">
-      <div class="npay-toggle-label">구매버튼 노출 <span class="npay-badge">추가</span></div>
+      <div class="npay-toggle-label">구매버튼 노출</div>
       <label class="npay-toggle"><input type="checkbox" checked><span class="npay-toggle-slider"></span></label>
       <span class="npay-toggle-text">노출함</span>
     </div>
     <div class="npay-toggle-row">
-      <div class="npay-toggle-label">주문연동 <span class="npay-badge">추가</span></div>
+      <div class="npay-toggle-label">주문연동</div>
       <label class="npay-toggle"><input type="checkbox" checked><span class="npay-toggle-slider"></span></label>
       <span class="npay-toggle-text">사용함</span>
     </div>
@@ -528,6 +529,51 @@
   </div>
   <div class="npay-setting-btn-row">
     <button class="npay-setting-btn">적용</button>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 상품등록/수정 -->
+  <div class="section" id="product-edit">
+    <div class="section-title">상품등록/수정</div>
+    <div class="npay-setting-wrap">
+      <div class="npay-setting-title">네이버페이 설정 <span class="required-note">표시 필수항목</span></div>
+      <div class="npay-setting-row">
+        <div class="npay-setting-label"><span class="check">✓</span> Shop ID</div>
+        <input class="npay-setting-input" type="text" placeholder="">
+      </div>
+      <div class="npay-setting-row">
+        <div class="npay-setting-label"><span class="check">✓</span> 연동 인증키</div>
+        <input class="npay-setting-input" type="text" placeholder="">
+      </div>
+      <div class="npay-setting-row">
+        <div class="npay-setting-label"><span class="check">✓</span> 버튼 인증키</div>
+        <input class="npay-setting-input" type="text" placeholder="">
+      </div>
+      <div class="npay-setting-row">
+        <div class="npay-setting-label"><span class="check">✓</span> 네이버 공통 인증키</div>
+        <input class="npay-setting-input" type="text" placeholder="">
+      </div>
+      <div class="npay-toggle-row">
+        <div class="npay-toggle-label">구매버튼 노출</div>
+        <label class="npay-toggle"><input type="checkbox" checked><span class="npay-toggle-slider"></span></label>
+        <span class="npay-toggle-text">노출함</span>
+      </div>
+      <div class="npay-toggle-row">
+        <div class="npay-toggle-label">주문연동</div>
+        <label class="npay-toggle"><input type="checkbox" checked><span class="npay-toggle-slider"></span></label>
+        <span class="npay-toggle-text">사용함</span>
+      </div>
+      <div class="npay-toggle-row">
+        <div class="npay-toggle-label">주문형 네이버페이 노출</div>
+        <label class="npay-toggle"><input type="checkbox" checked onchange="this.closest('.npay-toggle-row').querySelector('.npay-toggle-text').textContent = this.checked ? 'ON' : 'OFF'"><span class="npay-toggle-slider"></span></label>
+        <span class="npay-toggle-text">ON</span>
+      </div>
+      <div class="npay-setting-note">- 네이버페이 승인 완료 이후, 메일로 수신받은 정보로 기재하시고 적용을 눌러주세요.</div>
+    </div>
+    <div class="npay-setting-btn-row">
+      <button class="npay-setting-btn">적용</button>
+    </div>
   </div>
 
 </div><!-- /page-wrap -->
@@ -544,6 +590,7 @@
 </div><!-- /layout-wrap -->
 <script>
 const descriptions = {
+  'product-edit': { name: '상품등록/수정', text: '상품 등록 및 수정 화면에서 주문형 네이버페이 노출 여부를 ON/OFF로 설정할 수 있습니다.' },
   intro: { name: '주문형 네이버페이란?', text: '네이버 계정에 등록된 결제수단으로 쇼핑몰에서 간편 결제하는 서비스입니다. 상품 상세 페이지에 네이버페이 버튼이 직접 노출됩니다.' },
   info:  { name: '간편구매 정보', text: '서비스명, 결제 수수료, 가입비, 연회비, 정산주기 등 네이버페이 주문형의 기본 조건을 확인하는 화면입니다.' },
   check: { name: '가입 전 필수 확인', text: '네이버페이 주문형 신청 전 반드시 충족해야 할 조건들을 안내합니다. 취급 불가 상품·비실물 상품 여부를 미리 확인하세요.' },

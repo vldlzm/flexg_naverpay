@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>상품등록/수정 - 네이버페이</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; font-size: 13px; color: #333; background: #fff; }
+  a { color: #03c75a; text-decoration: none; }
+
+  /* 3열 레이아웃 */
+  .layout-wrap { display: flex; max-width: 1600px; margin: 0 auto; min-height: 100vh; }
+  .sidebar-left { width: 190px; min-width: 190px; border-right: 1px solid #e0e0e0; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; background: #fafafa; flex-shrink: 0; }
+  .sidebar-right { width: 240px; min-width: 240px; border-left: 1px solid #e0e0e0; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; background: #fafafa; flex-shrink: 0; }
+  .page-wrap { flex: 1; padding: 30px 20px 60px; overflow-y: auto; min-width: 0; }
+
+  /* 인덱스 */
+  .index-label { font-size: 11px; font-weight: bold; color: #aaa; padding: 0 16px 10px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .index-item { display: block; padding: 7px 16px; font-size: 13px; color: #555; cursor: pointer; border-left: 3px solid transparent; transition: all 0.15s; text-decoration: none; }
+  .index-item:hover { color: #03c75a; background: #f0faf5; text-decoration: none; }
+  .index-item.active { color: #03c75a; font-weight: bold; border-left-color: #03c75a; background: #f0faf5; }
+
+  /* 화면설명 패널 */
+  .panel-label { font-size: 11px; font-weight: bold; color: #aaa; padding: 0 16px 10px; letter-spacing: 0.5px; text-transform: uppercase; }
+  #screen-desc { display: none; padding: 0 16px; }
+  #screen-desc.visible { display: block; }
+  #screen-desc .desc-name { font-size: 13px; font-weight: bold; color: #03c75a; margin-bottom: 8px; }
+  #screen-desc .desc-text { font-size: 12px; color: #666; line-height: 1.8; }
+
+  /* 페이지 타이틀 */
+  .page-title { font-size: 20px; font-weight: bold; color: #222; padding-bottom: 14px; border-bottom: 1px solid #ddd; margin-bottom: 24px; }
+
+  /* 탭 */
+  .tab-wrap { display: flex; gap: 0; margin-bottom: 30px; border-bottom: 2px solid #03c75a; }
+  .tab-btn { padding: 10px 28px; font-size: 14px; font-family: inherit; cursor: pointer; border: 1px solid #ddd; border-bottom: none; background: #fff; color: #888; border-radius: 4px 4px 0 0; }
+  .tab-btn.active { background: #03c75a; color: #fff; font-weight: bold; border-color: #03c75a; }
+  .tab-btn:not(.active):hover { background: #eafaf2; color: #03c75a; }
+
+  /* 섹션 */
+  .section { margin-bottom: 40px; }
+  .section-title { font-size: 16px; font-weight: bold; color: #222; margin-bottom: 14px; }
+
+  /* 네이버페이 설정 박스 */
+  .npay-setting-wrap { background: #fff; border: 1px solid #e0e0e0; border-radius: 6px; padding: 30px 36px 36px; }
+  .npay-setting-title { font-size: 18px; font-weight: bold; color: #222; margin-bottom: 4px; }
+  .npay-setting-title .required-note { font-size: 12px; font-weight: normal; color: #f56; margin-left: 8px; }
+  .npay-setting-title .required-note::before { content: "✓"; margin-right: 2px; }
+  .npay-setting-row { display: flex; align-items: center; margin-top: 20px; gap: 16px; }
+  .npay-setting-label { width: 160px; min-width: 160px; font-size: 13px; color: #444; display: flex; align-items: center; gap: 4px; }
+  .npay-setting-label .check { color: #f56; font-size: 13px; }
+  .npay-setting-input { flex: 1; border: 1px solid #d0d0d0; border-radius: 4px; padding: 9px 12px; font-size: 13px; color: #333; background: #fff; outline: none; }
+  .npay-toggle-row { display: flex; align-items: center; margin-top: 18px; gap: 12px; }
+  .npay-toggle-label { font-size: 13px; color: #444; min-width: 160px; display: flex; align-items: center; gap: 6px; }
+  .npay-toggle { position: relative; display: inline-block; width: 46px; height: 24px; flex-shrink: 0; }
+  .npay-toggle input { opacity: 0; width: 0; height: 0; }
+  .npay-toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #ccc; border-radius: 24px; transition: 0.2s; }
+  .npay-toggle-slider::before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background: #fff; border-radius: 50%; transition: 0.2s; }
+  .npay-toggle input:checked + .npay-toggle-slider { background: #03c75a; }
+  .npay-toggle input:checked + .npay-toggle-slider::before { transform: translateX(22px); }
+  .npay-toggle-text { font-size: 13px; color: #555; }
+  .npay-setting-note { font-size: 12px; color: #999; margin-top: 20px; }
+  .npay-setting-btn-row { display: flex; justify-content: center; margin-top: 28px; }
+  .npay-setting-btn { background: #555; color: #fff; border: none; border-radius: 4px; padding: 11px 44px; font-size: 14px; cursor: pointer; font-family: inherit; }
+  .npay-setting-btn:hover { background: #333; }
+
+  .divider { border: none; border-top: 1px solid #e0e0e0; margin: 36px 0; }
+</style>
+</head>
+<body>
+<div class="layout-wrap">
+
+  <!-- 좌측 인덱스 -->
+  <aside class="sidebar-left">
+    <div class="index-label">Index</div>
+    <nav>
+      <a class="index-item" onclick="location.href='index.html'">주문형 네이버페이란?</a>
+      <a class="index-item active">상품등록/수정</a>
+    </nav>
+  </aside>
+
+  <!-- 중앙 메인 -->
+  <div class="page-wrap">
+
+    <!-- 페이지 타이틀 -->
+    <div class="page-title">네이버페이</div>
+
+    <!-- 탭 -->
+    <div class="tab-wrap">
+      <button class="tab-btn" onclick="location.href='naverpay_payment_type.html'">결제형 네이버페이</button>
+      <button class="tab-btn active">상품등록/수정</button>
+    </div>
+
+    <!-- 네이버페이 설정 -->
+    <div class="section">
+      <div class="section-title">상품등록/수정</div>
+      <div class="npay-setting-wrap">
+        <div class="npay-setting-title">네이버페이 설정 <span class="required-note">표시 필수항목</span></div>
+        <div class="npay-setting-row">
+          <div class="npay-setting-label"><span class="check">✓</span> Shop ID</div>
+          <input class="npay-setting-input" type="text" placeholder="">
+        </div>
+        <div class="npay-setting-row">
+          <div class="npay-setting-label"><span class="check">✓</span> 연동 인증키</div>
+          <input class="npay-setting-input" type="text" placeholder="">
+        </div>
+        <div class="npay-setting-row">
+          <div class="npay-setting-label"><span class="check">✓</span> 버튼 인증키</div>
+          <input class="npay-setting-input" type="text" placeholder="">
+        </div>
+        <div class="npay-setting-row">
+          <div class="npay-setting-label"><span class="check">✓</span> 네이버 공통 인증키</div>
+          <input class="npay-setting-input" type="text" placeholder="">
+        </div>
+        <div class="npay-toggle-row">
+          <div class="npay-toggle-label">구매버튼 노출</div>
+          <label class="npay-toggle">
+            <input type="checkbox" checked onchange="this.closest('.npay-toggle-row').querySelector('.npay-toggle-text').textContent = this.checked ? '노출함' : '노출안함'">
+            <span class="npay-toggle-slider"></span>
+          </label>
+          <span class="npay-toggle-text">노출함</span>
+        </div>
+        <div class="npay-toggle-row">
+          <div class="npay-toggle-label">주문연동</div>
+          <label class="npay-toggle">
+            <input type="checkbox" checked onchange="this.closest('.npay-toggle-row').querySelector('.npay-toggle-text').textContent = this.checked ? '사용함' : '사용안함'">
+            <span class="npay-toggle-slider"></span>
+          </label>
+          <span class="npay-toggle-text">사용함</span>
+        </div>
+        <div class="npay-toggle-row">
+          <div class="npay-toggle-label">주문형 네이버페이 노출</div>
+          <label class="npay-toggle">
+            <input type="checkbox" checked onchange="this.closest('.npay-toggle-row').querySelector('.npay-toggle-text').textContent = this.checked ? 'ON' : 'OFF'">
+            <span class="npay-toggle-slider"></span>
+          </label>
+          <span class="npay-toggle-text">ON</span>
+        </div>
+        <div class="npay-setting-note">- 네이버페이 승인 완료 이후, 메일로 수신받은 정보로 기재하시고 적용을 눌러주세요.</div>
+      </div>
+      <div class="npay-setting-btn-row">
+        <button class="npay-setting-btn">적용</button>
+      </div>
+    </div>
+
+  </div><!-- /page-wrap -->
+
+  <!-- 우측 화면설명 -->
+  <aside class="sidebar-right">
+    <div class="panel-label">화면설명</div>
+    <div id="screen-desc">
+      <div class="desc-name" id="desc-name"></div>
+      <div class="desc-text" id="desc-text"></div>
+    </div>
+  </aside>
+
+</div><!-- /layout-wrap -->
+</body>
+</html>

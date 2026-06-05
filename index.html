@@ -10,7 +10,25 @@
   a { color: #03c75a; text-decoration: none; }
   a:hover { text-decoration: underline; }
 
-  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 30px 20px 60px; }
+  /* 3열 레이아웃 */
+  .layout-wrap { display: flex; max-width: 1600px; margin: 0 auto; min-height: 100vh; }
+  .sidebar-left { width: 190px; min-width: 190px; border-right: 1px solid #e0e0e0; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; background: #fafafa; flex-shrink: 0; }
+  .sidebar-right { width: 240px; min-width: 240px; border-left: 1px solid #e0e0e0; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; background: #fafafa; flex-shrink: 0; }
+  .page-wrap { flex: 1; padding: 30px 20px 60px; overflow-y: auto; min-width: 0; }
+
+  /* 인덱스 */
+  .index-label { font-size: 11px; font-weight: bold; color: #aaa; padding: 0 16px 10px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .index-item { display: block; padding: 7px 16px; font-size: 13px; color: #555; cursor: pointer; border-left: 3px solid transparent; transition: all 0.15s; text-decoration: none; }
+  .index-item:hover { color: #03c75a; background: #f0faf5; text-decoration: none; }
+  .index-item.active { color: #03c75a; font-weight: bold; border-left-color: #03c75a; background: #f0faf5; }
+  .index-item.sub { padding-left: 26px; font-size: 12px; color: #777; }
+
+  /* 화면설명 패널 */
+  .panel-label { font-size: 11px; font-weight: bold; color: #aaa; padding: 0 16px 10px; letter-spacing: 0.5px; text-transform: uppercase; }
+  #screen-desc { display: none; padding: 0 16px; }
+  #screen-desc.visible { display: block; }
+  #screen-desc .desc-name { font-size: 13px; font-weight: bold; color: #03c75a; margin-bottom: 8px; }
+  #screen-desc .desc-text { font-size: 12px; color: #666; line-height: 1.8; }
 
   /* 페이지 타이틀 */
   .page-title { font-size: 20px; font-weight: bold; color: #222; padding-bottom: 14px; border-bottom: 1px solid #ddd; margin-bottom: 20px; }
@@ -118,6 +136,26 @@
 </style>
 </head>
 <body>
+<div class="layout-wrap">
+
+  <!-- 좌측 인덱스 -->
+  <aside class="sidebar-left">
+    <div class="index-label">Index</div>
+    <nav>
+      <a class="index-item" onclick="navClick('intro', this)">주문형 네이버페이란?</a>
+      <a class="index-item" onclick="navClick('info', this)">간편구매 정보</a>
+      <a class="index-item" onclick="navClick('check', this)">시작 전 확인사항</a>
+      <a class="index-item" onclick="navClick('docs', this)">가입 준비 서류</a>
+      <a class="index-item" onclick="navClick('steps', this)">진행 절차 안내</a>
+      <a class="index-item sub" onclick="navClick('step1', this)">Step 1. 네이버페이 신청</a>
+      <a class="index-item sub" onclick="navClick('step2', this)">Step 2. 정보 입력 및 서류 제출</a>
+      <a class="index-item sub" onclick="navClick('step3', this)">Step 3. 고객확인제도 등록</a>
+      <a class="index-item sub" onclick="navClick('step4', this)">Step 4. 서류 검토 및 1차 승인</a>
+      <a class="index-item sub" onclick="navClick('step5', this)">Step 5. 최종 승인 및 사용</a>
+    </nav>
+  </aside>
+
+  <!-- 중앙 메인 -->
 <div class="page-wrap">
 
   <!-- 페이지 타이틀 -->
@@ -130,7 +168,7 @@
   </div>
 
   <!-- 주문형 네이버페이란? -->
-  <div class="section">
+  <div class="section" id="intro">
     <div class="desc-box">
       <div class="box-inner-title">주문형 네이버페이란?</div>
       <p class="bullet">네이버페이 주문형은 고객이 네이버 계정에 미리 등록한 카드·계좌로 여러 쇼핑몰에서 빠르게 결제할 수 있는 간편구매 서비스입니다.</p>
@@ -166,7 +204,7 @@
   <hr class="divider">
 
   <!-- 간편구매 정보 -->
-  <div class="section">
+  <div class="section" id="info">
     <div class="section-title">간편구매 정보</div>
     <table class="info-table">
       <tr>
@@ -191,7 +229,7 @@
   <hr class="divider">
 
   <!-- 시작 전 확인사항 -->
-  <div class="section">
+  <div class="section" id="check">
     <div class="section-title">시작 전 확인사항</div>
     <div class="notice-box">
       <ul>
@@ -210,7 +248,7 @@
   <hr class="divider">
 
   <!-- 가입 준비 서류 -->
-  <div class="section">
+  <div class="section" id="docs">
     <div class="section-title">가입 준비 서류</div>
     <div class="doc-box">
       <div class="doc-section">
@@ -235,13 +273,13 @@
   <hr class="divider">
 
   <!-- 진행 절차 안내 -->
-  <div class="section">
+  <div class="section" id="steps">
     <div class="section-title">진행 절차 안내</div>
     <div class="steps-wrap">
 
       <div class="step-item">
         <div class="step-label">
-          <span class="step-num">Step. 1</span>
+          <span class="step-num" id="step1">Step. 1</span>
           <span class="step-name">네이버페이 신청</span>
         </div>
         <div class="step-content">
@@ -393,7 +431,7 @@
 
       <div class="step-item">
         <div class="step-label">
-          <span class="step-num">Step. 2</span>
+          <span class="step-num" id="step2">Step. 2</span>
           <span class="step-name">정보 입력 및 서류 제출</span>
         </div>
         <div class="step-content">
@@ -408,7 +446,7 @@
 
       <div class="step-item">
         <div class="step-label">
-          <span class="step-num">Step. 3</span>
+          <span class="step-num" id="step3">Step. 3</span>
           <span class="step-name">고객확인제도 등록</span>
         </div>
         <div class="step-content">
@@ -424,7 +462,7 @@
 
       <div class="step-item">
         <div class="step-label">
-          <span class="step-num">Step. 4</span>
+          <span class="step-num" id="step4">Step. 4</span>
           <span class="step-name">서류 검토 및 1차 승인</span>
         </div>
         <div class="step-content">
@@ -439,7 +477,7 @@
 
       <div class="step-item">
         <div class="step-label">
-          <span class="step-num">Step. 5</span>
+          <span class="step-num" id="step5">Step. 5</span>
           <span class="step-name">최종 승인 및 사용</span>
         </div>
         <div class="step-content">
@@ -460,8 +498,45 @@
     <button class="btn btn-green">주문형 네이버페이 신청</button>
   </div>
 
-</div>
+</div><!-- /page-wrap -->
+
+  <!-- 우측 화면설명 -->
+  <aside class="sidebar-right">
+    <div class="panel-label">화면설명</div>
+    <div id="screen-desc">
+      <div class="desc-name" id="desc-name"></div>
+      <div class="desc-text" id="desc-text"></div>
+    </div>
+  </aside>
+
+</div><!-- /layout-wrap -->
 <script>
+const descriptions = {
+  intro: { name: '주문형 네이버페이란?', text: '네이버 계정에 등록된 결제수단으로 쇼핑몰에서 간편 결제하는 서비스입니다. 상품 상세 페이지에 네이버페이 버튼이 직접 노출됩니다.' },
+  info:  { name: '간편구매 정보', text: '서비스명, 결제 수수료, 가입비, 연회비, 정산주기 등 네이버페이 주문형의 기본 조건을 확인하는 화면입니다.' },
+  check: { name: '시작 전 확인사항', text: '네이버페이 주문형 신청 전 반드시 충족해야 할 조건들을 안내합니다. 취급 불가 상품·비실물 상품 여부를 미리 확인하세요.' },
+  docs:  { name: '가입 준비 서류', text: '개인사업자·법인사업자별 제출 서류 목록입니다. 사전에 준비해 두면 신청이 빠릅니다.' },
+  steps: { name: '진행 절차 안내', text: '신청부터 최종 승인까지 5단계 프로세스 전체를 한눈에 확인합니다.' },
+  step1: { name: 'Step 1. 네이버페이 신청', text: '네이버페이센터(admin.pay.naver.com) 접속 후 가입하기를 클릭해 신청을 시작합니다. 만 14세 이상 실명인증된 개인 네이버 아이디 필요.' },
+  step2: { name: 'Step 2. 정보 입력 및 서류 제출', text: '사업자 정보·URL·담당자 정보·반품 배송지를 입력하고 필수 서류를 첨부합니다. 가입 기본정보 등록 버튼까지 클릭해야 합니다.' },
+  step3: { name: 'Step 3. 고객확인제도 등록', text: '결제형과 별도로 주문형 신청 시 고객확인제도를 다시 등록해야 합니다. 페이지 하단 심사요청 버튼 클릭까지 완료해야 합니다.' },
+  step4: { name: 'Step 4. 서류 검토 및 1차 승인', text: '서류 접수 완료일로부터 최대 1주일 소요됩니다. 1차 승인 시 Shop ID·연동 인증키가 자동 입력되며 이메일로 결과가 안내됩니다.' },
+  step5: { name: 'Step 5. 최종 승인 및 사용', text: '1차 승인 후 3영업일 이내 최종 승인이 완료됩니다. 최종 승인 후 네이버페이 주문형 결제가 정상 활성화됩니다.' },
+};
+
+function navClick(id, el) {
+  document.querySelectorAll('.index-item').forEach(a => a.classList.remove('active'));
+  el.classList.add('active');
+  const target = document.getElementById(id);
+  if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const desc = descriptions[id];
+  if (desc) {
+    document.getElementById('desc-name').textContent = desc.name;
+    document.getElementById('desc-text').textContent = desc.text;
+    document.getElementById('screen-desc').classList.add('visible');
+  }
+}
+
 function toggleAccordion(header) {
   const arrow = header.querySelector('.accordion-arrow');
   const body = header.nextElementSibling;

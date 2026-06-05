@@ -144,14 +144,13 @@
     <nav>
       <a class="index-item" onclick="navClick('intro', this)">주문형 네이버페이란?</a>
       <a class="index-item" onclick="navClick('info', this)">간편구매 정보</a>
-      <a class="index-item" onclick="navClick('check', this)">시작 전 확인사항</a>
+      <a class="index-item" onclick="navClick('check', this)">가입 전 필수 확인</a>
       <a class="index-item" onclick="navClick('docs', this)">가입 준비 서류</a>
       <a class="index-item" onclick="navClick('steps', this)">진행 절차 안내</a>
       <a class="index-item sub" onclick="navClick('step1', this)">Step 1. 네이버페이 신청</a>
-      <a class="index-item sub" onclick="navClick('step2', this)">Step 2. 정보 입력 및 서류 제출</a>
-      <a class="index-item sub" onclick="navClick('step3', this)">Step 3. 고객확인제도 등록</a>
-      <a class="index-item sub" onclick="navClick('step4', this)">Step 4. 서류 검토 및 1차 승인</a>
-      <a class="index-item sub" onclick="navClick('step5', this)">Step 5. 최종 승인 및 사용</a>
+      <a class="index-item sub" onclick="navClick('step2', this)">Step 2. 고객확인제도 등록</a>
+      <a class="index-item sub" onclick="navClick('step3', this)">Step 3. 서류 검토 및 1차 승인</a>
+      <a class="index-item sub" onclick="navClick('step4', this)">Step 4. 최종 승인 및 사용</a>
     </nav>
   </aside>
 
@@ -228,9 +227,9 @@
 
   <hr class="divider">
 
-  <!-- 시작 전 확인사항 -->
+  <!-- 가입 전 필수 확인 -->
   <div class="section" id="check">
-    <div class="section-title">시작 전 확인사항</div>
+    <div class="section-title">가입 전 필수 확인</div>
     <div class="notice-box">
       <ul>
         <li>쇼핑몰에서 취급하는 상품이 네이버페이 취급 불가 상품 기준에 해당하지 않아야 합니다.</li>
@@ -432,21 +431,6 @@
       <div class="step-item">
         <div class="step-label">
           <span class="step-num" id="step2">Step. 2</span>
-          <span class="step-name">정보 입력 및 서류 제출</span>
-        </div>
-        <div class="step-content">
-          <ul>
-            <li>가맹점 가입 약관에 모두 동의합니다. (모든 내용을 스크롤해야 다음 단계로 진행 가능)</li>
-            <li>사업자 정보 및 <strong>필수 서류 사본을 첨부</strong>합니다. (사업자등록증은 최근 1년 이내 발급분)</li>
-            <li><strong>URL 항목</strong>에는 내 쇼핑몰 도메인 주소를 PC·모바일 동일하게 입력합니다. (포워딩 도메인 불가, 최종 도착 도메인 입력)</li>
-            <li>담당자 정보 입력 (휴대전화 인증 필요), 반품 배송지 및 택배사 정보 입력 후 <strong>가입 기본정보 등록</strong>을 클릭합니다.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-label">
-          <span class="step-num" id="step3">Step. 3</span>
           <span class="step-name">고객확인제도 등록</span>
         </div>
         <div class="step-content">
@@ -462,7 +446,7 @@
 
       <div class="step-item">
         <div class="step-label">
-          <span class="step-num" id="step4">Step. 4</span>
+          <span class="step-num" id="step3">Step. 3</span>
           <span class="step-name">서류 검토 및 1차 승인</span>
         </div>
         <div class="step-content">
@@ -477,7 +461,7 @@
 
       <div class="step-item">
         <div class="step-label">
-          <span class="step-num" id="step5">Step. 5</span>
+          <span class="step-num" id="step4">Step. 4</span>
           <span class="step-name">최종 승인 및 사용</span>
         </div>
         <div class="step-content">
@@ -514,14 +498,13 @@
 const descriptions = {
   intro: { name: '주문형 네이버페이란?', text: '네이버 계정에 등록된 결제수단으로 쇼핑몰에서 간편 결제하는 서비스입니다. 상품 상세 페이지에 네이버페이 버튼이 직접 노출됩니다.' },
   info:  { name: '간편구매 정보', text: '서비스명, 결제 수수료, 가입비, 연회비, 정산주기 등 네이버페이 주문형의 기본 조건을 확인하는 화면입니다.' },
-  check: { name: '시작 전 확인사항', text: '네이버페이 주문형 신청 전 반드시 충족해야 할 조건들을 안내합니다. 취급 불가 상품·비실물 상품 여부를 미리 확인하세요.' },
+  check: { name: '가입 전 필수 확인', text: '네이버페이 주문형 신청 전 반드시 충족해야 할 조건들을 안내합니다. 취급 불가 상품·비실물 상품 여부를 미리 확인하세요.' },
   docs:  { name: '가입 준비 서류', text: '개인사업자·법인사업자별 제출 서류 목록입니다. 사전에 준비해 두면 신청이 빠릅니다.' },
   steps: { name: '진행 절차 안내', text: '신청부터 최종 승인까지 5단계 프로세스 전체를 한눈에 확인합니다.' },
   step1: { name: 'Step 1. 네이버페이 신청', text: '네이버페이센터(admin.pay.naver.com) 접속 후 가입하기를 클릭해 신청을 시작합니다. 만 14세 이상 실명인증된 개인 네이버 아이디 필요.' },
-  step2: { name: 'Step 2. 정보 입력 및 서류 제출', text: '사업자 정보·URL·담당자 정보·반품 배송지를 입력하고 필수 서류를 첨부합니다. 가입 기본정보 등록 버튼까지 클릭해야 합니다.' },
-  step3: { name: 'Step 3. 고객확인제도 등록', text: '결제형과 별도로 주문형 신청 시 고객확인제도를 다시 등록해야 합니다. 페이지 하단 심사요청 버튼 클릭까지 완료해야 합니다.' },
-  step4: { name: 'Step 4. 서류 검토 및 1차 승인', text: '서류 접수 완료일로부터 최대 1주일 소요됩니다. 1차 승인 시 Shop ID·연동 인증키가 자동 입력되며 이메일로 결과가 안내됩니다.' },
-  step5: { name: 'Step 5. 최종 승인 및 사용', text: '1차 승인 후 3영업일 이내 최종 승인이 완료됩니다. 최종 승인 후 네이버페이 주문형 결제가 정상 활성화됩니다.' },
+  step2: { name: 'Step 2. 고객확인제도 등록', text: '결제형과 별도로 주문형 신청 시 고객확인제도를 다시 등록해야 합니다. 페이지 하단 심사요청 버튼 클릭까지 완료해야 합니다.' },
+  step3: { name: 'Step 3. 서류 검토 및 1차 승인', text: '서류 접수 완료일로부터 최대 1주일 소요됩니다. 1차 승인 시 Shop ID·연동 인증키가 자동 입력되며 이메일로 결과가 안내됩니다.' },
+  step4: { name: 'Step 4. 최종 승인 및 사용', text: '1차 승인 후 3영업일 이내 최종 승인이 완료됩니다. 최종 승인 후 네이버페이 주문형 결제가 정상 활성화됩니다.' },
 };
 
 function navClick(id, el) {

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>확인사항 - 네이버페이</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; font-size: 13px; color: #333; background: #fff; }
+  a { color: #03c75a; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* 3열 레이아웃 */
+  .layout-wrap { display: flex; max-width: 1600px; margin: 0 auto; min-height: 100vh; }
+  .sidebar-left { width: 190px; min-width: 190px; border-right: 1px solid #e0e0e0; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; background: #fafafa; flex-shrink: 0; }
+  .sidebar-right { width: 240px; min-width: 240px; border-left: 1px solid #e0e0e0; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; background: #fafafa; flex-shrink: 0; }
+  .page-wrap { flex: 1; padding: 30px 20px 60px; overflow-y: auto; min-width: 0; }
+
+  /* 인덱스 */
+  .index-label { font-size: 11px; font-weight: bold; color: #aaa; padding: 0 16px 10px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .index-item { display: block; padding: 7px 16px; font-size: 13px; color: #555; cursor: pointer; border-left: 3px solid transparent; transition: all 0.15s; text-decoration: none; }
+  .index-item:hover { color: #03c75a; background: #f0faf5; text-decoration: none; }
+  .index-item.active { color: #03c75a; font-weight: bold; border-left-color: #03c75a; background: #f0faf5; }
+
+  /* 화면설명 패널 */
+  .panel-label { font-size: 11px; font-weight: bold; color: #aaa; padding: 0 16px 10px; letter-spacing: 0.5px; text-transform: uppercase; }
+  #screen-desc { display: none; padding: 0 16px; }
+  #screen-desc.visible { display: block; }
+  #screen-desc .desc-name { font-size: 13px; font-weight: bold; color: #03c75a; margin-bottom: 8px; }
+  #screen-desc .desc-text { font-size: 12px; color: #666; line-height: 1.8; }
+
+  /* 페이지 타이틀 */
+  .page-title { font-size: 20px; font-weight: bold; color: #222; padding-bottom: 14px; border-bottom: 1px solid #ddd; margin-bottom: 24px; }
+
+  /* 섹션 타이틀 */
+  .section-title { font-size: 18px; font-weight: bold; color: #222; padding-bottom: 14px; border-bottom: 2px solid #333; margin-bottom: 20px; }
+
+  /* 확인사항 테이블 */
+  .confirm-table { width: 100%; border-collapse: collapse; border-top: 2px solid #333; }
+  .confirm-table th { background: #f7f7f7; padding: 12px 16px; font-weight: bold; color: #444; text-align: center; border-bottom: 1px solid #e0e0e0; border-right: 1px solid #e8e8e8; font-size: 13px; }
+  .confirm-table th:last-child, .confirm-table td:last-child { border-right: none; }
+  .confirm-table td { padding: 10px 16px; color: #333; border-bottom: 1px solid #e8e8e8; border-right: 1px solid #e8e8e8; vertical-align: middle; }
+  .confirm-table td.num { text-align: center; width: 60px; color: #888; }
+  .confirm-table td.screen-name { width: 180px; }
+  .confirm-table td.done { text-align: center; width: 90px; }
+  .confirm-table input[type="text"] { width: 100%; border: 1px solid #d0d0d0; border-radius: 4px; padding: 7px 10px; font-size: 13px; color: #333; font-family: inherit; outline: none; }
+  .confirm-table input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; }
+</style>
+</head>
+<body>
+<div class="layout-wrap">
+
+  <!-- 좌측 인덱스 -->
+  <aside class="sidebar-left">
+    <div class="index-label">Index</div>
+    <nav>
+      <a class="index-item" onclick="location.href='index.html'">주문형 네이버페이란?</a>
+      <a class="index-item" onclick="location.href='product_edit.html'">상품등록/수정</a>
+      <a class="index-item active">확인사항</a>
+    </nav>
+  </aside>
+
+  <!-- 중앙 메인 -->
+  <div class="page-wrap">
+
+    <div class="page-title">네이버페이</div>
+
+    <div class="section-title">확인사항</div>
+
+    <table class="confirm-table">
+      <tr>
+        <th style="width:60px;">넘버</th>
+        <th style="width:180px;">화면명</th>
+        <th>확인이 필요한 사항</th>
+        <th style="width:90px;">확인 완료</th>
+      </tr>
+      <tr>
+        <td class="num">1</td>
+        <td class="screen-name"><input type="text" placeholder=""></td>
+        <td><input type="text" placeholder=""></td>
+        <td class="done"><input type="checkbox"></td>
+      </tr>
+      <tr>
+        <td class="num">2</td>
+        <td class="screen-name"><input type="text" placeholder=""></td>
+        <td><input type="text" placeholder=""></td>
+        <td class="done"><input type="checkbox"></td>
+      </tr>
+      <tr>
+        <td class="num">3</td>
+        <td class="screen-name"><input type="text" placeholder=""></td>
+        <td><input type="text" placeholder=""></td>
+        <td class="done"><input type="checkbox"></td>
+      </tr>
+      <tr>
+        <td class="num">4</td>
+        <td class="screen-name"><input type="text" placeholder=""></td>
+        <td><input type="text" placeholder=""></td>
+        <td class="done"><input type="checkbox"></td>
+      </tr>
+      <tr>
+        <td class="num">5</td>
+        <td class="screen-name"><input type="text" placeholder=""></td>
+        <td><input type="text" placeholder=""></td>
+        <td class="done"><input type="checkbox"></td>
+      </tr>
+    </table>
+
+  </div><!-- /page-wrap -->
+
+  <!-- 우측 화면설명 -->
+  <aside class="sidebar-right">
+    <div class="panel-label">화면설명</div>
+    <div id="screen-desc">
+      <div class="desc-name" id="desc-name"></div>
+      <div class="desc-text" id="desc-text"></div>
+    </div>
+  </aside>
+
+</div><!-- /layout-wrap -->
+</body>
+</html>

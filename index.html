@@ -526,6 +526,11 @@
       <label class="npay-toggle"><input type="checkbox" checked><span class="npay-toggle-slider"></span></label>
       <span class="npay-toggle-text">사용함</span>
     </div>
+    <div class="npay-toggle-row">
+      <div class="npay-toggle-label">구매평연동</div>
+      <label class="npay-toggle"><input type="checkbox" checked onchange="this.nextElementSibling.nextElementSibling.textContent = this.checked ? '사용함' : '사용안함'"><span class="npay-toggle-slider"></span></label>
+      <span class="npay-toggle-text">사용함</span>
+    </div>
   </div>
   <div class="npay-setting-btn-row">
     <button class="npay-setting-btn">적용</button>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>검색 조건 - 네이버페이</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; font-size: 13px; color: #333; background: #fff; }
+  a { color: #03c75a; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* 3열 레이아웃 */
+  .layout-wrap { display: flex; max-width: 1600px; margin: 0 auto; min-height: 100vh; }
+  .sidebar-left { width: 140px; min-width: 140px; border-right: 1px solid #e0e0e0; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; background: #fafafa; flex-shrink: 0; }
+  .sidebar-right { display: none; width: 240px; min-width: 240px; border-left: 1px solid #e0e0e0; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; background: #fafafa; flex-shrink: 0; }
+  .page-wrap { flex: 1; padding: 30px 20px 60px; overflow-y: auto; min-width: 0; }
+
+  /* 인덱스 */
+  .index-label { font-size: 11px; font-weight: bold; color: #aaa; padding: 0 16px 10px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .index-item { display: block; padding: 7px 16px; font-size: 13px; color: #555; cursor: pointer; border-left: 3px solid transparent; transition: all 0.15s; text-decoration: none; }
+  .index-item:hover { color: #03c75a; background: #f0faf5; text-decoration: none; }
+  .index-item.active { color: #03c75a; font-weight: bold; border-left-color: #03c75a; background: #f0faf5; }
+
+  /* 페이지 타이틀 */
+  .page-title { font-size: 20px; font-weight: bold; color: #222; padding-bottom: 14px; border-bottom: 1px solid #ddd; margin-bottom: 20px; }
+
+  /* 검색조건 박스 */
+  .search-box { background: #fafafa; border: 1px solid #e0e0e0; border-radius: 4px; padding: 20px; margin-bottom: 20px; }
+  
+  /* 검색 행 */
+  .search-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 16px; align-items: end; }
+  .search-row.full { grid-template-columns: 1fr; }
+  
+  /* 검색 항목 */
+  .search-item { display: flex; flex-direction: column; }
+  .search-item label { font-weight: bold; color: #333; margin-bottom: 6px; font-size: 13px; }
+  .search-item input, .search-item select { border: 1px solid #ccc; border-radius: 3px; padding: 8px 10px; font-size: 13px; font-family: inherit; }
+  .search-item input:focus, .search-item select:focus { outline: none; border-color: #03c75a; }
+
+  /* 날짜 범위 입력 */
+  .date-range { display: flex; align-items: center; gap: 8px; }
+  .date-range input { flex: 1; }
+  .date-range-sep { color: #999; }
+
+  /* 또는 버튼 */
+  .or-btn { background: #ddd; color: #333; border: none; border-radius: 3px; padding: 8px 14px; font-size: 12px; cursor: pointer; font-family: inherit; }
+  
+  /* 저장 버튼 그룹 */
+  .btn-group { display: flex; gap: 8px; align-items: center; }
+  .btn-save { background: #03c75a; color: #fff; border: none; border-radius: 3px; padding: 8px 16px; font-size: 12px; font-weight: bold; cursor: pointer; font-family: inherit; }
+  .btn-save:hover { background: #019852; }
+
+  /* 조건 상태 행 */
+  .condition-row { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; margin-bottom: 16px; }
+  .condition-item { display: flex; align-items: center; }
+  .condition-item input[type="checkbox"] { margin-right: 6px; cursor: pointer; }
+  .condition-item label { cursor: pointer; font-size: 12px; }
+
+  /* 구분선 */
+  .divider { border: none; border-top: 1px solid #e0e0e0; margin: 12px 0; }
+
+  /* 결제 수단 섹션 */
+  .payment-section { margin-top: 12px; }
+  .payment-title { font-weight: bold; color: #333; margin-bottom: 8px; font-size: 13px; }
+  .payment-items { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .payment-item { display: flex; align-items: center; }
+  .payment-item input[type="checkbox"] { margin-right: 6px; cursor: pointer; }
+  .payment-item label { cursor: pointer; font-size: 12px; }
+
+  /* 버튼 행 */
+  .action-buttons { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
+  .btn { padding: 10px 24px; border: none; border-radius: 3px; font-size: 13px; cursor: pointer; font-family: inherit; }
+  .btn-primary { background: #888; color: #fff; }
+  .btn-primary:hover { background: #666; }
+  .btn-secondary { background: #333; color: #fff; }
+  .btn-secondary:hover { background: #111; }
+</style>
+</head>
+<body>
+<div class="layout-wrap">
+
+  <!-- 좌측 인덱스 -->
+  <aside class="sidebar-left">
+    <div class="index-label">Index</div>
+    <nav>
+      <a class="index-item" onclick="location.href='index.html'">주문형 네이버페이란?</a>
+      <a class="index-item" onclick="location.href='product_edit.html'">상품등록/수정</a>
+      <a class="index-item" onclick="location.href='confirm.html'">확인사항</a>
+      <a class="index-item active">검색 조건</a>
+    </nav>
+  </aside>
+
+  <!-- 중앙 메인 -->
+  <div class="page-wrap">
+
+    <!-- 페이지 타이틀 -->
+    <div class="page-title">검색 조건</div>
+
+    <!-- 검색조건 박스 -->
+    <div class="search-box">
+      
+      <!-- 첫번째 행: 주문 검색, 기간, 상품명, 저장 버튼 -->
+      <div class="search-row">
+        <div class="search-item">
+          <label>주문 검색</label>
+          <select>
+            <option>이름(통합)</option>
+          </select>
+        </div>
+        <div class="search-item">
+          <input type="text" placeholder="검색어 입력">
+        </div>
+        <div class="search-item">
+          <label>상품명</label>
+          <input type="text" placeholder="상품명 입력">
+        </div>
+        <div class="btn-group">
+          <button class="or-btn">또는</button>
+          <button class="btn-save">저장 검색 ›</button>
+        </div>
+      </div>
+
+      <!-- 두번째 행: 주문 구분, 기간 선택 -->
+      <div class="search-row">
+        <div class="search-item">
+          <label>주문 구분</label>
+          <select>
+            <option>전체</option>
+          </select>
+        </div>
+        <div class="search-item" style="grid-column: span 2;">
+          <label>기간검색</label>
+          <div class="date-range">
+            <input type="date" value="2026-03-09">
+            <span>~</span>
+            <input type="date" value="2026-06-09">
+          </div>
+        </div>
+        <div class="search-item">
+          <label>오늘</label>
+          <button style="background: #e8e8e8; border: 1px solid #ddd; padding: 8px; cursor: pointer; border-radius: 3px;">오늘</button>
+        </div>
+      </div>
+
+      <!-- 세번째 행: 주문 상태 체크박스 -->
+      <div class="condition-row">
+        <div class="condition-item">
+          <input type="checkbox" id="ch1"> <label for="ch1">전체</label>
+        </div>
+        <div class="condition-item">
+          <input type="checkbox" id="ch2"> <label for="ch2">예약중</label>
+        </div>
+        <div class="condition-item">
+          <input type="checkbox" id="ch3"> <label for="ch3">결제대기</label>
+        </div>
+        <div class="condition-item">
+          <input type="checkbox" id="ch4"> <label for="ch4">결제완료</label>
+        </div>
+        <div class="condition-item">
+          <input type="checkbox" id="ch5"> <label for="ch5">배송중</label>
+        </div>
+        <div class="condition-item">
+          <input type="checkbox" id="ch6"> <label for="ch6">배송완료</label>
+        </div>
+        <div class="condition-item">
+          <input type="checkbox" id="ch7"> <label for="ch7">주문완료</label>
+        </div>
+        <div class="condition-item">
+          <input type="checkbox" id="ch8"> <label for="ch8">주문취소</label>
+        </div>
+      </div>
+
+      <!-- 네번째 행: 배송 상태 등 체크박스 -->
+      <div class="condition-row">
+        <div class="condition-item">
+          <input type="checkbox" id="ch9"> <label for="ch9">전체</label>
+        </div>
+        <div class="condition-item">
+          <input type="checkbox" id="ch10"> <label for="ch10">배송전</label>
+        </div>
+        <div class="condition-item">
+          <input type="checkbox" id="ch11"> <label for="ch11">배송중</label>
+        </div>
+        <div class="condition-item">
+          <input type="checkbox" id="ch12"> <label for="ch12">배송완료</label>
+        </div>
+        <div class="condition-item">
+          <input type="checkbox" id="ch13"> <label for="ch13">기간경과</label>
+        </div>
+        <div class="condition-item">
+          <input type="checkbox" id="ch14"> <label for="ch14">반품신청</label>
+        </div>
+        <div class="condition-item">
+          <input type="checkbox" id="ch15"> <label for="ch15">반품예정</label>
+        </div>
+        <div class="condition-item">
+          <input type="checkbox" id="ch16"> <label for="ch16">교환요청</label>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- 결제 수단 섹션 -->
+      <div class="payment-section">
+        <div class="payment-title">결제 수단</div>
+        <div class="payment-items">
+          <div class="payment-item">
+            <input type="checkbox" id="card"> <label for="card">신용카드</label>
+          </div>
+          <div class="payment-item">
+            <input type="checkbox" id="npay-order"> <label for="npay-order">네이버페이(주문)</label>
+          </div>
+          <div class="payment-item">
+            <input type="checkbox" id="npay-payment"> <label for="npay-payment">네이버페이(결제)</label>
+          </div>
+          <div class="payment-item">
+            <input type="checkbox" id="bank"> <label for="bank">계좌이체</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 검색/초기화 버튼 -->
+      <div class="action-buttons">
+        <button class="btn btn-primary">검색</button>
+        <button class="btn btn-secondary">초기화</button>
+      </div>
+
+    </div><!-- /search-box -->
+
+  </div><!-- /page-wrap -->
+
+</div><!-- /layout-wrap -->
+</body>
+</html>

@@ -11,10 +11,10 @@
   a:hover { text-decoration: underline; }
 
   /* 3열 레이아웃 */
-  .layout-wrap { display: flex; max-width: 1600px; margin: 0 auto; min-height: 100vh; }
+  .layout-wrap { display: flex; max-width: 2000px; margin: 0 auto; min-height: 100vh; }
   .sidebar-left { width: 140px; min-width: 140px; border-right: 1px solid #e0e0e0; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; background: #fafafa; flex-shrink: 0; }
   .sidebar-right { display: none; width: 240px; min-width: 240px; border-left: 1px solid #e0e0e0; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; background: #fafafa; flex-shrink: 0; }
-  .page-wrap { flex: 1; padding: 30px 20px 60px; overflow-y: auto; min-width: 0; }
+  .page-wrap { flex: 1; padding: 30px 40px 60px; overflow-y: auto; min-width: 0; }
 
   /* 인덱스 */
   .index-label { font-size: 11px; font-weight: bold; color: #aaa; padding: 0 16px 10px; letter-spacing: 0.5px; text-transform: uppercase; }
@@ -26,51 +26,60 @@
   .page-title { font-size: 20px; font-weight: bold; color: #222; padding-bottom: 14px; border-bottom: 1px solid #ddd; margin-bottom: 20px; }
 
   /* 검색조건 박스 */
-  .search-box { background: #fafafa; border: 1px solid #e0e0e0; border-radius: 4px; padding: 20px; margin-bottom: 20px; }
+  .search-box { background: #fff; border: 1px solid #e0e0e0; border-radius: 4px; padding: 0; margin-bottom: 20px; }
   
-  /* 검색 행 */
-  .search-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 16px; align-items: end; }
-  .search-row.full { grid-template-columns: 1fr; }
+  /* 검색 섹션 */
+  .search-section { padding: 14px 20px; border-bottom: 1px solid #e8e8e8; }
+  .search-section:last-of-type { border-bottom: none; }
   
-  /* 검색 항목 */
-  .search-item { display: flex; flex-direction: column; }
-  .search-item label { font-weight: bold; color: #333; margin-bottom: 6px; font-size: 13px; }
-  .search-item input, .search-item select { border: 1px solid #ccc; border-radius: 3px; padding: 8px 10px; font-size: 13px; font-family: inherit; }
-  .search-item input:focus, .search-item select:focus { outline: none; border-color: #03c75a; }
+  /* 첫번째 검색 행 - 한줄에 모두 표시 */
+  .search-row-first { display: flex; align-items: flex-end; gap: 6px; flex-wrap: nowrap; margin-bottom: 0; overflow-x: auto; }
+  
+  /* 검색 필드 그룹 */
+  .search-field-group { display: flex; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+  .search-label { font-weight: bold; color: #333; font-size: 12px; padding: 0 2px; white-space: nowrap; }
+  .search-select, .search-input { border: 1px solid #ccc; border-radius: 3px; padding: 6px 8px; font-size: 12px; font-family: inherit; white-space: nowrap; flex-shrink: 0; }
+  .search-select { width: 90px; }
+  .search-input { width: 110px; }
+  .search-input.large { width: 140px; }
+  .search-input:focus, .search-select:focus { outline: none; border-color: #03c75a; }
 
-  /* 날짜 범위 입력 */
-  .date-range { display: flex; align-items: center; gap: 8px; }
-  .date-range input { flex: 1; }
-  .date-range-sep { color: #999; }
+  /* 날짜 입력 */
+  .date-input { width: 55px; flex-shrink: 0; }
+  .date-sep { color: #999; padding: 0 2px; font-size: 12px; flex-shrink: 0; }
 
   /* 또는 버튼 */
-  .or-btn { background: #ddd; color: #333; border: none; border-radius: 3px; padding: 8px 14px; font-size: 12px; cursor: pointer; font-family: inherit; }
+  .or-btn { background: #ddd; color: #333; border: 1px solid #ccc; border-radius: 3px; padding: 6px 12px; font-size: 11px; cursor: pointer; font-family: inherit; white-space: nowrap; flex-shrink: 0; }
+  .or-btn:hover { background: #ccc; }
   
-  /* 저장 버튼 그룹 */
-  .btn-group { display: flex; gap: 8px; align-items: center; }
-  .btn-save { background: #03c75a; color: #fff; border: none; border-radius: 3px; padding: 8px 16px; font-size: 12px; font-weight: bold; cursor: pointer; font-family: inherit; }
-  .btn-save:hover { background: #019852; }
+  /* 저장 검색 버튼 */
+  .btn-save { background: #555; color: #fff; border: 1px solid #555; border-radius: 3px; padding: 6px 12px; font-size: 11px; font-weight: bold; cursor: pointer; font-family: inherit; white-space: nowrap; flex-shrink: 0; }
+  .btn-save:hover { background: #333; }
 
-  /* 조건 상태 행 */
-  .condition-row { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; margin-bottom: 16px; }
-  .condition-item { display: flex; align-items: center; }
-  .condition-item input[type="checkbox"] { margin-right: 6px; cursor: pointer; }
-  .condition-item label { cursor: pointer; font-size: 12px; }
+  /* 오늘 버튼 */
+  .btn-period { background: #f0f0f0; color: #333; border: 1px solid #ddd; border-radius: 3px; padding: 6px 8px; font-size: 11px; cursor: pointer; font-family: inherit; white-space: nowrap; flex-shrink: 0; min-width: 35px; }
+  .btn-period:hover { background: #e0e0e0; }
+
+  /* 체크박스 행 */
+  .checkbox-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+  .checkbox-item { display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+  .checkbox-item input[type="checkbox"] { width: 13px; height: 13px; cursor: pointer; flex-shrink: 0; }
+  .checkbox-item label { cursor: pointer; font-size: 12px; color: #333; }
 
   /* 구분선 */
-  .divider { border: none; border-top: 1px solid #e0e0e0; margin: 12px 0; }
+  .divider { border: none; border-top: 1px solid #e8e8e8; margin: 0; }
 
   /* 결제 수단 섹션 */
-  .payment-section { margin-top: 12px; }
-  .payment-title { font-weight: bold; color: #333; margin-bottom: 8px; font-size: 13px; }
-  .payment-items { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-  .payment-item { display: flex; align-items: center; }
-  .payment-item input[type="checkbox"] { margin-right: 6px; cursor: pointer; }
-  .payment-item label { cursor: pointer; font-size: 12px; }
+  .payment-section { padding: 14px 20px; }
+  .payment-title { font-weight: bold; color: #333; margin-bottom: 10px; font-size: 12px; }
+  .payment-items { display: flex; gap: 10px; flex-wrap: wrap; }
+  .payment-item { display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+  .payment-item input[type="checkbox"] { width: 13px; height: 13px; cursor: pointer; flex-shrink: 0; }
+  .payment-item label { cursor: pointer; font-size: 12px; color: #333; }
 
   /* 버튼 행 */
-  .action-buttons { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
-  .btn { padding: 10px 24px; border: none; border-radius: 3px; font-size: 13px; cursor: pointer; font-family: inherit; }
+  .action-buttons { display: flex; justify-content: center; gap: 8px; padding: 14px 20px; }
+  .btn { padding: 8px 28px; border: none; border-radius: 3px; font-size: 12px; cursor: pointer; font-family: inherit; }
   .btn-primary { background: #888; color: #fff; }
   .btn-primary:hover { background: #666; }
   .btn-secondary { background: #333; color: #fff; }
@@ -100,102 +109,155 @@
     <!-- 검색조건 박스 -->
     <div class="search-box">
       
-      <!-- 첫번째 행: 주문 검색, 기간, 상품명, 저장 버튼 -->
-      <div class="search-row">
-        <div class="search-item">
-          <label>주문 검색</label>
-          <select>
-            <option>이름(통합)</option>
-          </select>
-        </div>
-        <div class="search-item">
-          <input type="text" placeholder="검색어 입력">
-        </div>
-        <div class="search-item">
-          <label>상품명</label>
-          <input type="text" placeholder="상품명 입력">
-        </div>
-        <div class="btn-group">
+      <!-- 첫번째 섹션: 주문 검색 -->
+      <div class="search-section">
+        <div class="search-row-first">
+          <div class="search-field-group">
+            <span class="search-label">주문 검색</span>
+            <select class="search-select">
+              <option>이름(통합)</option>
+            </select>
+          </div>
+          <input type="text" class="search-input" placeholder="검색어 입력">
+          
+          <div class="search-field-group">
+            <span class="search-label">상품명</span>
+            <input type="text" class="search-input" placeholder="상품명 입력">
+          </div>
+
           <button class="or-btn">또는</button>
           <button class="btn-save">저장 검색 ›</button>
-        </div>
-      </div>
 
-      <!-- 두번째 행: 주문 구분, 기간 선택 -->
-      <div class="search-row">
-        <div class="search-item">
-          <label>주문 구분</label>
-          <select>
-            <option>전체</option>
-          </select>
-        </div>
-        <div class="search-item" style="grid-column: span 2;">
-          <label>기간검색</label>
-          <div class="date-range">
-            <input type="date" value="2026-03-09">
-            <span>~</span>
-            <input type="date" value="2026-06-09">
+          <div class="search-field-group">
+            <span class="search-label">명칭</span>
+            <input type="text" class="search-input" placeholder="명칭 입력">
           </div>
         </div>
-        <div class="search-item">
-          <label>오늘</label>
-          <button style="background: #e8e8e8; border: 1px solid #ddd; padding: 8px; cursor: pointer; border-radius: 3px;">오늘</button>
+      </div>
+
+      <!-- 두번째 섹션: 주문 구분, 기간검색 -->
+      <div class="search-section">
+        <div class="search-row-first">
+          <div class="search-field-group">
+            <span class="search-label">주문 구분</span>
+            <select class="search-select">
+              <option>전체</option>
+            </select>
+          </div>
+
+          <div class="search-field-group">
+            <span class="search-label">기간</span>
+            <input type="text" class="date-input" value="기간" style="width: 50px;">
+            <span class="date-sep">~</span>
+            <input type="text" class="date-input" value="기간" style="width: 50px;">
+          </div>
+
+          <div class="search-field-group">
+            <span class="search-label">기간검색</span>
+            <select class="search-select">
+              <option>준정일</option>
+            </select>
+          </div>
+
+          <button class="btn-period">오늘</button>
+          <button class="btn-period">7</button>
+          <button class="btn-period">15</button>
+          <button class="btn-period">17</button>
+          <button class="btn-period">27</button>
+          <button class="btn-period">전체</button>
         </div>
       </div>
 
-      <!-- 세번째 행: 주문 상태 체크박스 -->
-      <div class="condition-row">
-        <div class="condition-item">
-          <input type="checkbox" id="ch1"> <label for="ch1">전체</label>
+      <!-- 세번째 섹션: 주문 상태 -->
+      <div class="search-section">
+        <div style="margin-bottom: 8px;">
+          <span class="search-label">주문 상태</span>
         </div>
-        <div class="condition-item">
-          <input type="checkbox" id="ch2"> <label for="ch2">예약중</label>
-        </div>
-        <div class="condition-item">
-          <input type="checkbox" id="ch3"> <label for="ch3">결제대기</label>
-        </div>
-        <div class="condition-item">
-          <input type="checkbox" id="ch4"> <label for="ch4">결제완료</label>
-        </div>
-        <div class="condition-item">
-          <input type="checkbox" id="ch5"> <label for="ch5">배송중</label>
-        </div>
-        <div class="condition-item">
-          <input type="checkbox" id="ch6"> <label for="ch6">배송완료</label>
-        </div>
-        <div class="condition-item">
-          <input type="checkbox" id="ch7"> <label for="ch7">주문완료</label>
-        </div>
-        <div class="condition-item">
-          <input type="checkbox" id="ch8"> <label for="ch8">주문취소</label>
+        <div class="checkbox-row">
+          <div class="checkbox-item">
+            <input type="checkbox" id="ch1"> <label for="ch1">전체</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="ch2"> <label for="ch2">예약중</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="ch3"> <label for="ch3">결제대기</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="ch4"> <label for="ch4">결제완료</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="ch5"> <label for="ch5">배송준비</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="ch6"> <label for="ch6">배송중</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="ch7"> <label for="ch7">배송완료</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="ch8"> <label for="ch8">주문완료</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="ch9"> <label for="ch9">주문취소</label>
+          </div>
         </div>
       </div>
 
-      <!-- 네번째 행: 배송 상태 등 체크박스 -->
-      <div class="condition-row">
-        <div class="condition-item">
-          <input type="checkbox" id="ch9"> <label for="ch9">전체</label>
+      <!-- 네번째 섹션: 배송상태 -->
+      <div class="search-section">
+        <div style="margin-bottom: 8px;">
+          <span class="search-label">배송상태</span>
         </div>
-        <div class="condition-item">
-          <input type="checkbox" id="ch10"> <label for="ch10">배송전</label>
-        </div>
-        <div class="condition-item">
-          <input type="checkbox" id="ch11"> <label for="ch11">배송중</label>
-        </div>
-        <div class="condition-item">
-          <input type="checkbox" id="ch12"> <label for="ch12">배송완료</label>
-        </div>
-        <div class="condition-item">
-          <input type="checkbox" id="ch13"> <label for="ch13">기간경과</label>
-        </div>
-        <div class="condition-item">
-          <input type="checkbox" id="ch14"> <label for="ch14">반품신청</label>
-        </div>
-        <div class="condition-item">
-          <input type="checkbox" id="ch15"> <label for="ch15">반품예정</label>
-        </div>
-        <div class="condition-item">
-          <input type="checkbox" id="ch16"> <label for="ch16">교환요청</label>
+        <div class="checkbox-row">
+          <div class="checkbox-item">
+            <input type="checkbox" id="ch10"> <label for="ch10">전체</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="ch11"> <label for="ch11">수도권배송</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="ch12"> <label for="ch12">자동배송</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="ch13"> <label for="ch13">배송대기</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="ch14"> <label for="ch14">배송중</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="ch15"> <label for="ch15">배송완료</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="ch16"> <label for="ch16">배송불가</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="ch17"> <label for="ch17">배송변경</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="ch18"> <label for="ch18">반품신청</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="ch19"> <label for="ch19">반품대기</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="ch20"> <label for="ch20">반품진행</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="ch21"> <label for="ch21">반품완료</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="ch22"> <label for="ch22">교환요청</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="ch23"> <label for="ch23">교환진행</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="ch24"> <label for="ch24">교환완료</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="ch25"> <label for="ch25">거부됨</label>
+          </div>
         </div>
       </div>
 

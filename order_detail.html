@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>주문 상세정보 - 네이버페이</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; font-size: 13px; color: #333; background: #fff; }
+  a { color: #03c75a; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* 3열 레이아웃 */
+  .layout-wrap { display: flex; max-width: 1600px; margin: 0 auto; min-height: 100vh; }
+  .sidebar-left { width: 140px; min-width: 140px; border-right: 1px solid #e0e0e0; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; background: #fafafa; flex-shrink: 0; }
+  .sidebar-right { display: none; width: 240px; min-width: 240px; border-left: 1px solid #e0e0e0; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; background: #fafafa; flex-shrink: 0; }
+  .page-wrap { flex: 1; overflow-y: auto; min-width: 0; }
+
+  /* 인덱스 */
+  .index-label { font-size: 11px; font-weight: bold; color: #aaa; padding: 0 16px 10px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .index-item { display: block; padding: 7px 16px; font-size: 13px; color: #555; cursor: pointer; border-left: 3px solid transparent; transition: all 0.15s; text-decoration: none; }
+  .index-item:hover { color: #03c75a; background: #f0faf5; text-decoration: none; }
+  .index-item.active { color: #03c75a; font-weight: bold; border-left-color: #03c75a; background: #f0faf5; }
+
+  /* 화면설명 패널 */
+  .panel-label { font-size: 11px; font-weight: bold; color: #aaa; padding: 0 16px 10px; letter-spacing: 0.5px; text-transform: uppercase; }
+  #screen-desc { display: none; padding: 0 16px; }
+  #screen-desc.visible { display: block; }
+  #screen-desc .desc-name { font-size: 13px; font-weight: bold; color: #03c75a; margin-bottom: 8px; }
+  #screen-desc .desc-text { font-size: 12px; color: #666; line-height: 1.8; }
+
+  /* 상세 헤더 */
+  .detail-header { background: #2d3035; color: #fff; padding: 16px 24px; font-size: 15px; font-weight: bold; display: flex; align-items: center; gap: 8px; }
+  .detail-header .icon { color: #03c75a; font-size: 16px; }
+  .detail-header .order-no { color: #03c75a; }
+
+  /* 탭 */
+  .detail-tabs { background: #5a5d61; display: flex; }
+  .detail-tab { padding: 13px 22px; color: #ddd; font-size: 13px; cursor: pointer; white-space: nowrap; }
+  .detail-tab.active { background: #fff; color: #333; font-weight: bold; }
+  .detail-tab:not(.active):hover { background: #6c6f73; }
+
+  /* 본문 */
+  .content-area { padding: 24px; }
+
+  /* 섹션 타이틀 */
+  .section-title { font-size: 16px; font-weight: bold; color: #222; padding-bottom: 12px; margin-bottom: 0; }
+
+  /* 정보 테이블 */
+  .info-table { width: 100%; border-collapse: collapse; border-top: 2px solid #333; }
+  .info-table tr { border-bottom: 1px solid #e8e8e8; }
+  .info-table th { background: #f7f7f7; padding: 14px 20px; font-weight: normal; color: #444; text-align: left; width: 160px; min-width: 160px; vertical-align: top; font-size: 13px; border-right: 1px solid #e8e8e8; }
+  .info-table td { padding: 14px 20px; color: #333; vertical-align: middle; }
+  .order-no-naver { margin-top: 6px; color: #555; }
+  .status-log-line { display: block; color: #555; }
+  .status-log-line .arrow { color: #999; }
+  .status-log-line a { color: #03c75a; }
+</style>
+</head>
+<body>
+<div class="layout-wrap">
+
+  <!-- 좌측 인덱스 -->
+  <aside class="sidebar-left">
+    <div class="index-label">Index</div>
+    <nav>
+      <a class="index-item" onclick="location.href='index.html'">주문형 네이버페이란?</a>
+      <a class="index-item" onclick="location.href='product_edit.html'">상품등록/수정</a>
+      <a class="index-item" onclick="location.href='confirm.html'">확인사항</a>
+      <a class="index-item" onclick="location.href='search_condition.html'">검색 조건</a>
+      <a class="index-item active">주문 상세정보</a>
+    </nav>
+  </aside>
+
+  <!-- 중앙 메인 -->
+  <div class="page-wrap">
+
+    <!-- 상세 헤더 -->
+    <div class="detail-header">
+      <span class="icon">📋</span>
+      <span>주문 상세정보</span>
+      <span class="order-no">WTE260610-00000001</span>
+    </div>
+
+    <!-- 탭 -->
+    <div class="detail-tabs">
+      <div class="detail-tab">주문 상품</div>
+      <div class="detail-tab">결제 정보</div>
+      <div class="detail-tab active">주문 정보</div>
+      <div class="detail-tab">주문자 및 배송지 정보</div>
+      <div class="detail-tab">CS_부분취소 처리</div>
+      <div class="detail-tab">CS_반품/교환 사진 요청 리스트</div>
+    </div>
+
+    <div class="content-area">
+
+      <div class="section-title">주문 정보</div>
+
+      <table class="info-table">
+        <tr>
+          <th>주문번호</th>
+          <td>
+            <a href="#">WTE260610-00000001</a>
+            <span class="order-no-naver">· 네이버 주문형 주문번호 : 2024011512345678901234</span>
+          </td>
+        </tr>
+        <tr>
+          <th>주문일</th>
+          <td>2026-06-10 10:18:16</td>
+        </tr>
+        <tr>
+          <th>주문상태</th>
+          <td>배송완료</td>
+        </tr>
+        <tr>
+          <th>주문상태 변경내역</th>
+          <td>
+            <span class="status-log-line">[2026-06-10 10:18:25] testflexg 미입금 <span class="arrow">→</span> 입금확인</span>
+            <span class="status-log-line">[2026-06-10 10:18:30] testflexg 입금확인 <span class="arrow">→</span> 배송준비</span>
+            <span class="status-log-line">[2026-06-10 10:18:33] testflexg 배송준비 <span class="arrow">→</span> 배송중</span>
+            <span class="status-log-line">[2026-06-10 10:18:38] testflexg 배송중 <span class="arrow">→</span> 배송완료</span>
+          </td>
+        </tr>
+        <tr>
+          <th>선물상태</th>
+          <td></td>
+        </tr>
+      </table>
+
+    </div>
+
+  </div><!-- /page-wrap -->
+
+  <!-- 우측 화면설명 -->
+  <aside class="sidebar-right">
+    <div class="panel-label">화면설명</div>
+    <div id="screen-desc">
+      <div class="desc-name" id="desc-name"></div>
+      <div class="desc-text" id="desc-text"></div>
+    </div>
+  </aside>
+
+</div><!-- /layout-wrap -->
+</body>
+</html>

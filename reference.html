@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>주문상태값 매핑 - 네이버페이</title>
+<title>참고자료 - 네이버페이</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; font-size: 13px; color: #333; background: #fff; }
@@ -32,12 +32,15 @@
   /* 페이지 타이틀 */
   .page-title { font-size: 20px; font-weight: bold; color: #222; padding-bottom: 14px; border-bottom: 1px solid #ddd; margin-bottom: 24px; }
 
-  /* 매핑 테이블 */
-  .mapping-table { width: 100%; border-collapse: collapse; }
-  .mapping-table th { text-align: left; padding: 14px 20px; font-size: 14px; font-weight: bold; color: #222; border-bottom: 1px solid #ddd; }
-  .mapping-table td { padding: 14px 20px; font-size: 13px; color: #333; }
-  .mapping-table tr:nth-child(even) td { background: #f7f7f7; }
-  .mapping-table tr:not(:last-child) td { border-bottom: 1px solid #eee; }
+  /* 섹션 타이틀 */
+  .section-title { font-size: 18px; font-weight: bold; color: #222; padding-bottom: 14px; border-bottom: 2px solid #333; margin-bottom: 20px; }
+
+  /* 참고자료 테이블 */
+  .ref-table { width: 100%; border-collapse: collapse; border-top: 2px solid #333; }
+  .ref-table th { background: #f7f7f7; padding: 12px 16px; font-weight: bold; color: #444; text-align: center; border-bottom: 1px solid #e0e0e0; border-right: 1px solid #e8e8e8; font-size: 13px; }
+  .ref-table th:last-child, .ref-table td:last-child { border-right: none; }
+  .ref-table td { padding: 12px 16px; color: #333; border-bottom: 1px solid #e8e8e8; border-right: 1px solid #e8e8e8; vertical-align: middle; }
+  .ref-table td.name { width: 260px; font-weight: bold; }
 </style>
 </head>
 <body>
@@ -52,9 +55,9 @@
       <a class="index-item" onclick="location.href='confirm.html'">확인사항</a>
       <a class="index-item" onclick="location.href='search_condition.html'">검색 조건</a>
       <a class="index-item" onclick="location.href='order_detail.html'">주문 상세정보</a>
-      <a class="index-item active">주문상태값 매핑</a>
+      <a class="index-item" onclick="location.href='order_status_mapping.html'">주문상태값 매핑</a>
       <a class="index-item" onclick="location.href='exchange_management.html'">교환관리</a>
-      <a class="index-item" onclick="location.href='reference.html'">참고자료</a>
+      <a class="index-item active">참고자료</a>
     </nav>
   </aside>
 
@@ -63,70 +66,32 @@
 
     <div class="page-title">네이버페이</div>
 
-    <table class="mapping-table">
+    <div class="section-title">참고자료</div>
+
+    <table class="ref-table">
       <tr>
-        <th>플렉스지</th>
-        <th>네이버페이 주문형</th>
+        <th style="width:260px;">자료명</th>
+        <th>링크</th>
       </tr>
       <tr>
-        <td>미입금확인</td>
-        <td>결제대기중</td>
+        <td class="name">네이버페이 개발자센터 (API 문서)</td>
+        <td>https://developer.pay.naver.com</td>
       </tr>
       <tr>
-        <td>신규주문</td>
-        <td>신규주문</td>
+        <td class="name">네이버페이 주문형 공식 가이드 PDF 모음</td>
+        <td>https://mkt.naver.com/naverpay_guide</td>
       </tr>
       <tr>
-        <td>수락대기</td>
-        <td>-</td>
+        <td class="name">네이버페이 주문형 판매관리 가이드 PDF</td>
+        <td>https://campaign-cdn.pstatic.net/filemanager/static/naverpay_guide/pdf/9_%EC%A3%BC%EB%AC%B8%ED%98%95_%ED%8C%90%EB%A7%A4%EA%B4%80%EB%A6%AC_713.pdf</td>
       </tr>
       <tr>
-        <td>배송준비</td>
-        <td>배송준비중</td>
+        <td class="name">네이버페이 주문형 취소/반품/교환 관리 가이드 PDF</td>
+        <td>https://campaign-cdn.pstatic.net/filemanager/static/naverpay_guide/pdf/10_%EC%A3%BC%EB%AC%B8%ED%98%95_%EC%B7%A8%EC%86%8C%EB%B0%98%ED%92%88%EA%B5%90%ED%99%98%EA%B4%80%EB%A6%AC_713.pdf</td>
       </tr>
       <tr>
-        <td>부분배송중</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>배송중</td>
-        <td>배송중</td>
-      </tr>
-      <tr>
-        <td>배송완료</td>
-        <td>배송완료 → 구매확정</td>
-      </tr>
-      <tr>
-        <td>배송예약</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>주문자요청 배송전</td>
-        <td>취소요청(배송전)</td>
-      </tr>
-      <tr>
-        <td>주문자요청 배송후</td>
-        <td>취소요청(배송후)</td>
-      </tr>
-      <tr>
-        <td>주문취소</td>
-        <td>취소완료</td>
-      </tr>
-      <tr>
-        <td>반품관리</td>
-        <td>반품처리중/반품완료</td>
-      </tr>
-      <tr>
-        <td>교환관리</td>
-        <td>교환처리중/교환완료</td>
-      </tr>
-      <tr>
-        <td>휴지통</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>주문대기</td>
-        <td>-</td>
+        <td class="name">네이버페이 기술지원 이메일 (API 문서 요청)</td>
+        <td>dl_techsupport@navercorp.com</td>
       </tr>
     </table>
 

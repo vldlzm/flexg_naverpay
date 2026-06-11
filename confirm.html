@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>확인사항 - 네이버페이</title>
+<title>협의사항 - 네이버페이</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; font-size: 13px; color: #333; background: #fff; }
@@ -32,6 +32,11 @@
   /* 페이지 타이틀 */
   .page-title { font-size: 20px; font-weight: bold; color: #222; padding-bottom: 14px; border-bottom: 1px solid #ddd; margin-bottom: 24px; }
 
+  /* 요약 대시보드 */
+  .summary-box { display: inline-flex; align-items: center; gap: 10px; background: #fff5f5; border: 1px solid #f5c2c2; border-radius: 6px; padding: 12px 18px; margin-bottom: 24px; }
+  .summary-box .summary-count { font-size: 22px; font-weight: bold; color: #e53935; }
+  .summary-box .summary-label { font-size: 13px; color: #444; font-weight: bold; }
+
   /* 섹션 타이틀 */
   .section-title { font-size: 18px; font-weight: bold; color: #222; padding-bottom: 14px; border-bottom: 2px solid #333; margin-bottom: 20px; }
 
@@ -55,7 +60,7 @@
     <nav>
       <a class="index-item" onclick="location.href='index.html'">주문형 네이버페이란?</a>
       <a class="index-item" onclick="location.href='product_edit.html'">상품등록/수정</a>
-      <a class="index-item active">확인사항</a>
+      <a class="index-item active">협의사항</a>
       <a class="index-item" onclick="location.href='search_condition.html'">검색 조건</a>
       <a class="index-item" onclick="location.href='order_detail.html'">주문 상세정보</a>
       <a class="index-item" onclick="location.href='order_status_mapping.html'">주문상태값 매핑</a>
@@ -69,7 +74,12 @@
 
     <div class="page-title">네이버페이</div>
 
-    <div class="section-title">확인사항</div>
+    <div class="summary-box">
+      <span class="summary-count">3건</span>
+      <span class="summary-label">협의 필요 항목</span>
+    </div>
+
+    <div class="section-title">협의사항</div>
 
     <table class="confirm-table">
       <tr>

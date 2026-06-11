@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사용자 프로세스 - 네이버페이</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; font-size: 13px; color: #333; background: #fff; }
+  a { color: #03c75a; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* 3열 레이아웃 */
+  .layout-wrap { display: flex; max-width: 2000px; margin: 0 auto; min-height: 100vh; }
+  .sidebar-left { width: 140px; min-width: 140px; border-right: 1px solid #e0e0e0; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; background: #fafafa; flex-shrink: 0; }
+  .sidebar-right { display: none; width: 240px; min-width: 240px; border-left: 1px solid #e0e0e0; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; background: #fafafa; flex-shrink: 0; }
+  .page-wrap { flex: 1; padding: 30px 20px 60px; overflow-y: auto; min-width: 0; }
+
+  /* 인덱스 */
+  .index-label { font-size: 11px; font-weight: bold; color: #aaa; padding: 0 16px 10px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .index-item { display: block; padding: 7px 16px; font-size: 13px; color: #555; cursor: pointer; border-left: 3px solid transparent; transition: all 0.15s; text-decoration: none; }
+  .index-item:hover { color: #03c75a; background: #f0faf5; text-decoration: none; }
+  .index-item.active { color: #03c75a; font-weight: bold; border-left-color: #03c75a; background: #f0faf5; }
+
+  /* 화면설명 패널 */
+  .panel-label { font-size: 11px; font-weight: bold; color: #aaa; padding: 0 16px 10px; letter-spacing: 0.5px; text-transform: uppercase; }
+  #screen-desc { display: none; padding: 0 16px; }
+  #screen-desc.visible { display: block; }
+  #screen-desc .desc-name { font-size: 13px; font-weight: bold; color: #03c75a; margin-bottom: 8px; }
+  #screen-desc .desc-text { font-size: 12px; color: #666; line-height: 1.8; }
+
+  /* 페이지 타이틀 */
+  .page-title { font-size: 20px; font-weight: bold; color: #222; padding-bottom: 14px; border-bottom: 1px solid #ddd; margin-bottom: 24px; }
+
+  /* 섹션 타이틀 */
+  .section-title { font-size: 18px; font-weight: bold; color: #222; padding-bottom: 14px; border-bottom: 2px solid #333; margin-bottom: 20px; }
+
+  /* 플로우차트 */
+  .flow-wrap { display: flex; justify-content: center; }
+  .flow-svg { width: 100%; max-width: 640px; display: block; }
+
+  .step-box { box-sizing: border-box; width: 100%; height: 100%; border-radius: 8px; border: 2px solid; padding: 10px 18px; display: flex; flex-direction: column; justify-content: center; }
+  .step-title { font-size: 14px; font-weight: bold; margin-bottom: 6px; }
+  .step-desc { font-size: 12px; color: #555; line-height: 1.5; }
+
+  .step-green { background: #e8f8ef; border-color: #03c75a; }
+  .step-green .step-title { color: #03914a; }
+
+  .step-orange { background: #fff8e1; border-color: #f5a623; }
+  .step-orange .step-title { color: #c47e00; }
+
+  .step-purple { background: #f3e8fd; border-color: #8e44ad; }
+  .step-purple .step-title { color: #6c3483; }
+
+  /* 범례 */
+  .legend-wrap { display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #444; font-weight: bold; }
+  .legend-swatch { width: 18px; height: 18px; border-radius: 4px; border: 2px solid; }
+  .legend-swatch.green { background: #e8f8ef; border-color: #03c75a; }
+  .legend-swatch.orange { background: #fff8e1; border-color: #f5a623; }
+  .legend-swatch.purple { background: #f3e8fd; border-color: #8e44ad; }
+</style>
+</head>
+<body>
+<div class="layout-wrap">
+
+  <!-- 좌측 인덱스 -->
+  <aside class="sidebar-left">
+    <div class="index-label">Index</div>
+    <nav>
+      <a class="index-item" onclick="location.href='index.html'">주문형 네이버페이란?</a>
+      <a class="index-item" onclick="location.href='product_edit.html'">상품등록/수정</a>
+      <a class="index-item" onclick="location.href='confirm.html'">협의사항</a>
+      <a class="index-item" onclick="location.href='search_condition.html'">검색 조건</a>
+      <a class="index-item" onclick="location.href='order_detail.html'">주문 상세정보</a>
+      <a class="index-item" onclick="location.href='order_status_mapping.html'">주문상태값 매핑</a>
+      <a class="index-item" onclick="location.href='exchange_management.html'">교환관리</a>
+      <a class="index-item active">사용자 프로세스</a>
+      <a class="index-item" onclick="location.href='reference.html'">참고자료</a>
+    </nav>
+  </aside>
+
+  <!-- 중앙 메인 -->
+  <div class="page-wrap">
+
+    <div class="page-title">네이버페이</div>
+
+    <div class="section-title">사용자 프로세스</div>
+
+    <div class="flow-wrap">
+      <svg class="flow-svg" viewBox="0 0 640 1080" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#999"/>
+          </marker>
+        </defs>
+
+        <!-- 1단계 -->
+        <foreignObject x="20" y="10" width="600" height="90">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="step-box step-green">
+            <div class="step-title">1단계. 홍보 페이지 확인</div>
+            <div class="step-desc">플렉스지 관리자에서 네이버페이 주문형 안내 확인</div>
+          </div>
+        </foreignObject>
+        <line x1="320" y1="100" x2="320" y2="130" stroke="#999" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+        <!-- 2단계 -->
+        <foreignObject x="20" y="130" width="600" height="90">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="step-box step-green">
+            <div class="step-title">2단계. 네이버페이센터에서 신청</div>
+            <div class="step-desc">고객사가 네이버페이센터에서 직접 가입 신청</div>
+          </div>
+        </foreignObject>
+        <line x1="320" y1="220" x2="320" y2="250" stroke="#999" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+        <!-- 3단계 -->
+        <foreignObject x="20" y="250" width="600" height="90">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="step-box step-orange">
+            <div class="step-title">3단계. 네이버 1차 심사</div>
+            <div class="step-desc">네이버에서 가맹점 적합성 심사 (약 1주일)</div>
+          </div>
+        </foreignObject>
+        <line x1="320" y1="340" x2="320" y2="370" stroke="#999" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+        <!-- 4단계 -->
+        <foreignObject x="20" y="370" width="600" height="90">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="step-box step-green">
+            <div class="step-title">4단계. 인증키 입력</div>
+            <div class="step-desc">심사 승인 후 메일로 받은 인증키를 플렉스지에 입력</div>
+          </div>
+        </foreignObject>
+        <line x1="320" y1="460" x2="320" y2="490" stroke="#999" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+        <!-- 5단계 -->
+        <foreignObject x="20" y="490" width="600" height="90">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="step-box step-orange">
+            <div class="step-title">5단계. 네이버 2차 심사</div>
+            <div class="step-desc">쇼핑몰에 버튼이 제대로 노출되는지 확인 (1~2일)</div>
+          </div>
+        </foreignObject>
+        <line x1="320" y1="580" x2="320" y2="610" stroke="#999" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+        <!-- 6단계 -->
+        <foreignObject x="20" y="610" width="600" height="90">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="step-box step-purple">
+            <div class="step-title">6단계. 쇼핑몰에 버튼 노출 시작</div>
+            <div class="step-desc">상품 상세 페이지에 네이버페이 구매 버튼 활성화</div>
+          </div>
+        </foreignObject>
+        <line x1="320" y1="700" x2="320" y2="730" stroke="#999" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+        <!-- 7단계 -->
+        <foreignObject x="20" y="730" width="600" height="90">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="step-box step-purple">
+            <div class="step-title">7단계. 구매자 결제</div>
+            <div class="step-desc">버튼 클릭 → 네이버페이 주문서에서 결제 완료</div>
+          </div>
+        </foreignObject>
+        <line x1="320" y1="820" x2="320" y2="850" stroke="#999" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+        <!-- 8단계 -->
+        <foreignObject x="20" y="850" width="600" height="90">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="step-box step-purple">
+            <div class="step-title">8단계. 주문 데이터 연동</div>
+            <div class="step-desc">네이버페이 주문이 플렉스지 주문 관리로 자동 수집</div>
+          </div>
+        </foreignObject>
+        <line x1="320" y1="940" x2="320" y2="970" stroke="#999" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+        <!-- 9단계 -->
+        <foreignObject x="20" y="970" width="600" height="90">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="step-box step-purple">
+            <div class="step-title">9단계. 주문 처리</div>
+            <div class="step-desc">플렉스지 관리자에서 배송/취소/반품 처리</div>
+          </div>
+        </foreignObject>
+      </svg>
+    </div>
+
+    <!-- 범례 -->
+    <div class="legend-wrap">
+      <div class="legend-item"><span class="legend-swatch green"></span>고객사 작업</div>
+      <div class="legend-item"><span class="legend-swatch orange"></span>네이버 처리</div>
+      <div class="legend-item"><span class="legend-swatch purple"></span>운영 단계</div>
+    </div>
+
+  </div><!-- /page-wrap -->
+
+  <!-- 우측 화면설명 -->
+  <aside class="sidebar-right">
+    <div class="panel-label">화면설명</div>
+    <div id="screen-desc">
+      <div class="desc-name" id="desc-name"></div>
+      <div class="desc-text" id="desc-text"></div>
+    </div>
+  </aside>
+
+</div><!-- /layout-wrap -->
+</body>
+</html>

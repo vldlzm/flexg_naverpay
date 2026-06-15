@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>주문상태값 매핑 - 네이버페이</title>
+<title>구매평 매핑 - 네이버페이</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; font-size: 13px; color: #333; background: #fff; }
@@ -52,8 +52,8 @@
       <a class="index-item" onclick="location.href='confirm.html'">협의사항</a>
       <a class="index-item" onclick="location.href='search_condition.html'">검색 조건</a>
       <a class="index-item" onclick="location.href='order_detail.html'">주문 상세정보</a>
-      <a class="index-item active">주문상태값 매핑</a>
-      <a class="index-item" onclick="location.href='review_mapping.html'">구매평 매핑</a>
+      <a class="index-item" onclick="location.href='order_status_mapping.html'">주문상태값 매핑</a>
+      <a class="index-item active">구매평 매핑</a>
       <a class="index-item" onclick="location.href='exchange_management.html'">교환관리</a>
       <a class="index-item" onclick="location.href='process.html'">사용자 프로세스</a>
       <a class="index-item" onclick="location.href='reference.html'">참고자료</a>
@@ -67,68 +67,79 @@
 
     <table class="mapping-table">
       <tr>
-        <th>플렉스지</th>
-        <th>네이버페이 주문형</th>
+        <th>네이버페이 구매평 항목</th>
+        <th>플렉스지 상품평 매핑(안)</th>
+        <th>결정 필요 사항</th>
       </tr>
       <tr>
-        <td>미입금확인</td>
-        <td>결제대기중</td>
+        <td>작성자 정보</td>
+        <td>비회원/익명 처리</td>
+        <td>네이버 비회원 구매자를 플렉스지에서 "비회원 후기"로 표시할지</td>
       </tr>
       <tr>
-        <td>신규주문</td>
-        <td>신규주문</td>
+        <td>평점(별점)</td>
+        <td>플렉스지 평점 체계로 변환</td>
+        <td>네이버 평점 척도(5점/만족도 등)와 플렉스지 척도가 다를 경우 변환 기준</td>
       </tr>
       <tr>
-        <td>수락대기</td>
-        <td>-</td>
+        <td>리뷰 내용(텍스트)</td>
+        <td>본문 매핑</td>
+        <td>내용 없는 만족도성 리뷰는 제외 여부</td>
       </tr>
       <tr>
-        <td>배송준비</td>
-        <td>배송준비중</td>
+        <td>이미지</td>
+        <td>첨부 이미지 매핑</td>
+        <td>이미지 개수/용량 제한 처리</td>
       </tr>
       <tr>
-        <td>부분배송중</td>
-        <td>-</td>
+        <td>동영상</td>
+        <td>미연동</td>
+        <td>동영상은 연동 제외(카페24/아임웹 동일)</td>
       </tr>
       <tr>
-        <td>배송중</td>
-        <td>배송중</td>
+        <td>작성일자</td>
+        <td>표시 방식 결정</td>
+        <td>연동 시점 vs 실제 작성일 중 어떤 걸 노출할지</td>
       </tr>
       <tr>
-        <td>배송완료</td>
-        <td>배송완료 → 구매확정</td>
+        <td>상품 ID</td>
+        <td>productId 매핑</td>
+        <td>네이버 상품ID ↔ 플렉스지 상품코드 매핑 테이블 필요</td>
       </tr>
       <tr>
-        <td>배송예약</td>
-        <td>-</td>
+        <td>한달리뷰 여부</td>
+        <td>뱃지 표시 여부</td>
+        <td>별도 뱃지 표시할지, 일반 리뷰와 동일 처리할지</td>
       </tr>
       <tr>
-        <td>주문자요청 배송전</td>
-        <td>취소요청(배송전)</td>
+        <td>네이버페이 출처 표시</td>
+        <td>아이콘/뱃지</td>
+        <td>아임웹처럼 "N페이" 아이콘 표시할지</td>
       </tr>
       <tr>
-        <td>주문자요청 배송후</td>
-        <td>취소요청(배송후)</td>
+        <td>적립금</td>
+        <td>지급 미지급</td>
+        <td>비회원 구매이므로 적립금 미지급(공통 정책)</td>
       </tr>
       <tr>
-        <td>주문취소</td>
-        <td>취소완료</td>
+        <td>수집 주기</td>
+        <td>1일 1회 등</td>
+        <td>#14(주문 수집 주기)와 별도로 정의 필요</td>
       </tr>
       <tr>
-        <td>반품관리</td>
-        <td>반품처리중/반품완료</td>
+        <td>노출/비노출(블라인드)</td>
+        <td>네이버 정책 따름</td>
+        <td>블라인드 처리된 리뷰는 수집 제외</td>
       </tr>
       <tr>
-        <td>교환관리</td>
-        <td>교환처리중/교환완료</td>
+        <td>수정/삭제 동기화</td>
+        <td>동기화 안 함</td>
+        <td>최초 수집 시점 내용 고정(재수집 없음)</td>
       </tr>
       <tr>
-        <td>휴지통</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>주문대기</td>
-        <td>-</td>
+        <td>답변(댓글)</td>
+        <td>단방향</td>
+        <td>플렉스지 답변 → 네이버 미반영</td>
       </tr>
     </table>
 

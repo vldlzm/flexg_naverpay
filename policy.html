@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -44,7 +44,7 @@
   .confirm-table td.screen-name { width: 110px; }
   .confirm-table td.ref-img { width: 380px; text-align: center; }
   .confirm-table td.ref-img img { max-width: 180px; max-height: 120px; }
-  .confirm-table .decision-box { display: block; background: #eaf7e6; border: 1px solid #b3e0a6; border-radius: 6px; padding: 10px 12px; margin-top: 10px; color: #1e7d1e; font-weight: bold; }
+  .confirm-table .decision-box { display: block; background: #eaf7e6; border: 1px solid #b3e0a6; border-radius: 6px; padding: 10px 12px; margin-top: 0; color: #1e7d1e; font-weight: bold; }
   .confirm-table .decision-box .decision-label { display: inline-block; background: #03c75a; color: #fff; border-radius: 4px; padding: 2px 8px; font-size: 12px; margin-bottom: 6px; }
 </style>
 </head>
@@ -81,6 +81,7 @@
         <th rowspan="2" style="width:40px;">NO</th>
         <th rowspan="2" style="width:110px;">구분</th>
         <th rowspan="2">내용</th>
+        <th rowspan="2" style="width:280px;">결정사항</th>
         <th rowspan="2" style="width:380px;">참조 이미지</th>
         <th colspan="2">타사현황</th>
       </tr>
@@ -93,6 +94,8 @@
         <td class="screen-name">비회원 전용 여부</td>
         <td>
           - 상세 페이지의 버튼 노출 여부이며 실제 사용자의 주문내역에서는 주문 확인이 불가함.<br>
+        </td>
+        <td>
           <div class="decision-box"><span class="decision-label">✅ 결정사항</span><br>회원 포함 사용. 비회원, 회원 모두 버튼 노출</div>
         </td>
         <td class="ref-img"></td>
@@ -113,6 +116,8 @@
         <td>
           - 구매평 연동 기능을 제공.<br>
           - 매핑 조건은 바로가기에서 확인. &nbsp;<a href="review_mapping.html" style="display:inline-block;padding:3px 10px;background:#03c75a;color:#fff;border-radius:3px;font-size:12px;text-decoration:none;">구매평 매핑 바로가기 ›</a><br><br>
+        </td>
+        <td>
           <div class="decision-box"><span class="decision-label">✅ 결정사항</span><br>
           1. 하루 1회(1일 1회), 전날 작성된 네이버페이 구매평을 새벽에 일괄 수집해서 쇼핑몰 상품후기에 연동<br>
           2. 일방향 연동 (양방향 아님)<br>
@@ -165,6 +170,8 @@
           - 1월 1일 마감 할인 이벤트 적용받아야 하는데 주문일이 1월 2일로 찍혀 누락되는 경우<br>
           - 정산이나 세금계산서 날짜가 맞지 않는 경우<br>
           - 쇼핑몰 운영자가 날짜 기준으로 주문 조회할 때 헷갈리는 경우<br><br>
+        </td>
+        <td>
           <div class="decision-box"><span class="decision-label">✅ 결정사항</span><br>수집된 시점을 주문일로 표시한다.</div>
         </td>
         <td class="ref-img"></td>
@@ -179,6 +186,8 @@
           - 3개월이 지나면 그 주문의 상태값은 더 이상 네이버페이와 동기화되지 않음.<br><br>
           <b>문제가 될 수 있는 상황</b><br>
           - 운영자가 플렉스지 관리자만 보면 "정상 배송완료"로 보이는데, 실제로는 네이버페이센터에서 취소/반품이 진행 중일 수 있음.<br><br>
+        </td>
+        <td>
           <div class="decision-box"><span class="decision-label">✅ 결정사항</span><br>별도 안내 없이 처리. 플렉스지 가이드에 "주문 연동 후 3개월이 경과된 주문 건은 주문 상태가 연동되지 않습니다."라는 안내만 추가</div>
         </td>
         <td class="ref-img"></td>
@@ -192,6 +201,8 @@
           - 재고 차감 시점에 대한 정의 필요.<br><br>
           <b>1안.</b> 주문 등록 시 차감<br>
           <b>2안.</b> 결제 완료/수집 시 차감 (다만, 주문을 주기적으로 수집하는 구조이므로 결제 완료 시점과 수집 시점 사이에 약간의 시간차 발생함)<br><br>
+        </td>
+        <td>
           <div class="decision-box"><span class="decision-label">✅ 결정사항</span><br>수집 시점에 차감</div>
         </td>
         <td class="ref-img"></td>
@@ -211,6 +222,8 @@
           - 품절 상품<br><br>
           플렉스지 시스템이 위 상품들을 자동으로 판단할 기준이 없음<br>
           고객사(쇼핑몰 운영자)가 모르고 버튼을 노출할 경우, 구매자가 결제까지 완료되어 CS 발생 가능<br><br>
+        </td>
+        <td>
           <div class="decision-box"><span class="decision-label">✅ 결정사항</span><br>
           1. 상품별 설정으로 커버<br>
           상품 등록/수정 화면에서 운영자가 직접 "네이버페이 사용함/사용안함" 설정<br><br>
@@ -230,6 +243,7 @@
           - 교환 처리 범위 및 처리 방식에 대한 개발 검토 및 적용 범위 확정 필요.<br>
           - 카페24의 경우 교환은 네이버페이에서 처리 가능, 아임웹의 경우 자사(쇼핑몰 관리자)에서 처리 가능.
         </td>
+        <td></td>
         <td class="ref-img" style="text-align:left;">
           <table style="border-collapse:collapse; width:100%; font-size:11px;">
             <tr>
@@ -283,6 +297,7 @@
           - 종합형 연동의 경우, 고객사가 네이버페이 측에 별도로 신청 및 심사를 거쳐 진행하는 구조임 (작년 개발팀에서 네이버페이에 확인 완료).<br>
           - 플렉스지에서 종합형 연동을 지원할지 여부에 대한 결정 필요.
         </td>
+        <td></td>
         <td class="ref-img"></td>
         <td>-</td>
         <td>-</td>
@@ -291,6 +306,7 @@
         <td class="num">9</td>
         <td class="screen-name">버튼 스타일</td>
         <td>모바일·PC 노출 버튼 스타일 지정 필요. 최신 이미지 기준 찜하기·네이버톡 노출 여부 결정 필요</td>
+        <td></td>
         <td class="ref-img"><img src="images/confirm_ref_01.png" alt="참조 이미지"></td>
         <td>-</td>
         <td>-</td>
@@ -305,6 +321,7 @@
           주문형 버튼은 상품 상세에, 결제형은 주문/결제 페이지의 결제 수단으로 존재해야 함.<br><br>
           현재 노출 방식을 올바른 구조로 조정하는 방안 결정 필요.
         </td>
+        <td></td>
         <td class="ref-img" style="text-align:left;">
           <div style="font-weight:bold; margin-bottom:8px; font-size:12px;">각 유형별 버튼 위치 정리</div>
           <table style="border-collapse:collapse; width:100%; font-size:11px;">
@@ -344,6 +361,7 @@
           주문형 거래에 대해 플렉스지 관리자 시스템 내에서도 취소·반품 처리가 가능하도록 기능을 구현할지 여부 미결정 상태.<br>
           네이버페이 연동 API 범위 및 처리 주체(플렉스지 vs 네이버페이센터)에 대한 <b>개발 구현 범위 확정 필요.</b>
         </td>
+        <td></td>
         <td class="ref-img"></td>
         <td>-</td>
         <td>-</td>
@@ -353,6 +371,8 @@
         <td class="screen-name">네이버 주문번호 표기</td>
         <td>
           네이버주문형의 경우 네이버주문번호가 플렉스지 어드민 내에서 표기되어야한다. 결제형은 해당사항 없다.<br><br>
+        </td>
+        <td>
           <div class="decision-box"><span class="decision-label">✅ 결정사항</span><br>
           주문상세보기에서 네이버주문번호가 확인가능하도록 적용한다. &nbsp;<a href="order_detail.html" style="display:inline-block;padding:3px 10px;background:#03c75a;color:#fff;border-radius:3px;font-size:12px;text-decoration:none;">주문 상세정보 바로가기 ›</a><br>
           바로가기 버튼 클릭 시 주문 상세정보 페이지로 이동한다.
@@ -369,6 +389,7 @@
           - 교환관리 내 교환중/교환완료의 경우 상태값 변경 시 알럿으로 처리. 알럿 문구 : [네이버페이 주문형 교환은 네이버페이센터에서만 처리 가능합니다.]<br><br>
           - 부분 취소 가능한지 확인 필요.
         </td>
+        <td></td>
         <td class="ref-img"></td>
         <td>-</td>
         <td>-</td>
@@ -384,6 +405,7 @@
           - 배송예약으로 상태 변경 시 → "네이버페이 주문형은 배송예약 상태로 변경할 수 없습니다."<br>
           - 교환관리로 상태 변경 시 → "네이버페이 주문형은 교환관리 상태로 변경할 수 없습니다."
         </td>
+        <td></td>
         <td class="ref-img"></td>
         <td>-</td>
         <td>-</td>
@@ -394,6 +416,8 @@
         <td>
           네이버페이 설정 내 인증키들은 자동 입력되도록 한다.<br><br>
           [AS-IS] 네이버 결제형은 수동 입력 방식으로 개발된 상태.<br><br>
+        </td>
+        <td>
           <div class="decision-box"><span class="decision-label">✅ 결정사항</span><br>자동 입력</div>
         </td>
         <td class="ref-img"></td>
@@ -406,6 +430,7 @@
         <td>
           - 플렉스지의 네이버페이 주문형 주문 수집 주기 정의 확인 필요.
         </td>
+        <td></td>
         <td class="ref-img"></td>
         <td>2분마다 최근 10분 이내의 주문을 수집</td>
         <td>공개된 자료 없음</td>
@@ -416,6 +441,8 @@
         <td>
           - 네이버페이 주문형 주문 발생 시 플렉스지 관리자에서 고객사(쇼핑몰 운영자)에게 별도의 주문 알림을 제공하지 않는다.<br>
           - 알림이 필요한 경우, 고객사가 네이버페이 고객센터에 직접 신청하여 SMS 알림을 수신하는 방식으로 안내할지 결정 필요.<br><br>
+        </td>
+        <td>
           <div class="decision-box"><span class="decision-label">✅ 결정사항</span><br>알림이 필요한 경우, 고객사가 네이버페이 고객센터에 직접 신청하여 SMS 알림을 받는 방식으로 진행한다.</div>
         </td>
         <td class="ref-img"></td>
@@ -434,6 +461,7 @@
           <b>[교환 중간 상태값]</b><br>
           교환신청 / 교환보류
         </td>
+        <td></td>
         <td class="ref-img"></td>
         <td>-</td>
         <td>-</td>
@@ -449,6 +477,8 @@
           - 구매평 연동 → 연동안함<br><br>
           <b>2단계.</b> 네이버페이센터에서 탈퇴 신청<br><br>
           - 1단계 없이 2단계(네이버페이센터 탈퇴)만 먼저 진행된 경우, 플렉스지에서 이를 감지하여 위 설정을 자동으로 OFF 처리하는 개발이 가능한지 확인 필요.<br><br>
+        </td>
+        <td>
           <div class="decision-box"><span class="decision-label">✅ 결정사항</span><br>
           1단계 없이 2단계를 진행한 경우. 주문 수집 중 발생하는 에러코드로 탈퇴여부를 확인 OR 주기적으로 인증키 유효성 체크하여. 1단계를 모두OFF 처리한다. 기술구현가능여부를 고려하여 적용한다.
           </div>
@@ -463,6 +493,8 @@
         <td>
           <b>[주문형]</b><br>
           네이버페이 주문형의 경우 현금영수증 발급은 플렉스지가 아닌 네이버페이 주문서 페이지에서 신청해야 함.<br><br>
+        </td>
+        <td>
           <div class="decision-box"><span class="decision-label">✅ 결정사항</span><br>현금영수증 관리 화면에 네이버페이 주문형 주문건은 노출하지 않으며, 해당 내용을 가이드에만 안내한다.</div>
         </td>
         <td class="ref-img"></td>
@@ -474,6 +506,8 @@
         <td class="screen-name">사용설정 범위</td>
         <td>
           - 상품 분류별 네이버페이 사용설정 제공 여부 결정 필요.<br><br>
+        </td>
+        <td>
           <div class="decision-box"><span class="decision-label">✅ 결정사항</span><br>상품별 버튼 노출 ON/OFF 제공 / 카테고리별 ON/OFF 미제공</div>
         </td>
         <td class="ref-img"></td>
@@ -485,6 +519,8 @@
         <td class="screen-name">파일 첨부 옵션</td>
         <td>
           - 고객이 파일을 첨부해야 하는 옵션(예: 맞춤 제작 상품에 디자인 파일 업로드, 각인 상품에 이미지 업로드 등)이 있는 상품의 경우, 네이버페이는 파일 첨부 기능을 제공하지 않음.<br><br>
+        </td>
+        <td>
           <div class="decision-box"><span class="decision-label">✅ 결정사항</span><br>플렉스지의 경우 해당 기능 미제공으로 해당되지 않음</div>
         </td>
         <td class="ref-img"></td>
@@ -499,6 +535,7 @@
           - 단순 취소/반품은 "자사 관리자에서 처리 가능"하도록 개발.<br>
           - "취소/반품 처리 API 호출" 부분도 함께 개발 (플렉스지 → 네이버페이로 보내는 API 연동).
         </td>
+        <td></td>
         <td class="ref-img"></td>
         <td>-</td>
         <td>-</td>
@@ -508,6 +545,8 @@
         <td class="screen-name">사은품(giftName) 표시 여부</td>
         <td>
           네이버페이 주문 정보 등록 시 상품에 사은품이 포함된 경우 사은품명(giftName)을 네이버페이 주문서에 표시할 수 있음.<br><br>
+        </td>
+        <td>
           <div class="decision-box"><span class="decision-label">✅ 결정사항</span><br>플렉스지 내 사은품 전용 입력 항목이 없으므로 해당 사항 없음.</div>
         </td>
         <td class="ref-img"></td>
@@ -521,6 +560,8 @@
           - 톡톡 버튼 → 고객사가 연동했는지에 따라 SDK가 자동으로 처리<br>
           - 구매하기 버튼 → 필수<br>
           - 찜하기 버튼 → 제공 여부를 플렉스지가 결정해야 함<br><br>
+        </td>
+        <td>
           <div class="decision-box"><span class="decision-label">✅ 결정사항</span><br>찜하기 버튼 기능 제공한다.</div>
         </td>
         <td class="ref-img"></td>
@@ -533,6 +574,8 @@
         <td>
           1안 버튼 아예 숨기기 (가이드에 권장되어있음)<br>
           2안 비활성 버튼으로 보여주기<br><br>
+        </td>
+        <td>
           <div class="decision-box"><span class="decision-label">✅ 결정사항</span><br>버튼 숨기기</div>
         </td>
         <td class="ref-img"></td>
@@ -544,6 +587,8 @@
         <td class="screen-name">도서산간 배송비 API 연동</td>
         <td>
           고객이 네이버페이 주문서에서 배송지 주소 입력 시 도서산간 배송비 조회 API를 통해 플렉스지에 추가 배송비를 요청하고, 플렉스지는 해당 금액을 XML 형식으로 응답하는 구조.<br><br>
+        </td>
+        <td>
           <div class="decision-box"><span class="decision-label">✅ 결정사항</span><br>가이드 기준에 따라 도서산간 배송비 API 연동 적용 필요. 구현 가능여부를 고려하여 적용한다.</div>
         </td>
         <td class="ref-img"></td>
@@ -555,6 +600,8 @@
         <td class="screen-name">도서공연비 소득공제 대상 여부 표시</td>
         <td>
           책, 공연, 영화 구매시 네이버페이 주문시 소득공제 혜택을 적용할 수 있다고 함<br><br>
+        </td>
+        <td>
           <div class="decision-box"><span class="decision-label">✅ 결정사항</span><br>플렉스지 상품 등록/수정 화면 내 해당 항목이 존재하지 않음. 추후 필요 시 별도 검토.</div>
         </td>
         <td class="ref-img"></td>
@@ -566,6 +613,8 @@
         <td class="screen-name">유입경로 추적 스크립트</td>
         <td>
           네이버쇼핑, 네이버검색광고를 통해 쇼핑몰로 유입된 경로를 추적하기 위해 스크립트를 쇼핑몰 전체 페이지에 적용해야 함. 유입경로 데이터는 네이버페이센터나 광고주센터에서 고객사가 직접 확인 할 수 있음<br><br>
+        </td>
+        <td>
           <div class="decision-box"><span class="decision-label">✅ 결정사항</span><br>가이드 기준에 따라. 플렉스지 쇼핑몰 전체 페이지에 유입경로 스크립트 적용. 기술구현가능여부를 고려하여 적용한다.</div>
         </td>
         <td class="ref-img"></td>
@@ -577,6 +626,8 @@
         <td class="screen-name">템플릿형 or 커스텀형 선택</td>
         <td>
           템플릿형 or 커스텀형 선택 필요<br><br>
+        </td>
+        <td>
           <div class="decision-box"><span class="decision-label">✅ 결정사항</span><br>커스텀형으로 진행 (as-is 커스텀형태), 다만 찜하기/톡톡 연동된 경우의 버튼 스타일 추가 필요.</div>
         </td>
         <td class="ref-img"><img src="images/policy_btn_custom.png" alt="커스텀형 버튼 참조 이미지"></td>

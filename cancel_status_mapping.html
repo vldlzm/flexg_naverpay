@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>주문상태값 매핑 - 네이버페이</title>
+<title>취소 상태값 매핑 - 네이버페이</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; font-size: 13px; color: #333; background: #fff; }
@@ -38,8 +38,6 @@
   .mapping-table td { padding: 14px 20px; font-size: 13px; color: #333; }
   .mapping-table tr:nth-child(even) td { background: #f7f7f7; }
   .mapping-table tr:not(:last-child) td { border-bottom: 1px solid #eee; }
-  .mapping-table td.code { font-family: 'Courier New', monospace; font-size: 12px; color: #555; background: #f4f4f4; }
-  .mapping-table tr:nth-child(even) td.code { background: #ebebeb; }
 </style>
 </head>
 <body>
@@ -55,7 +53,7 @@
       <a class="index-item" onclick="location.href='confirm.html'">협의사항</a>
       <a class="index-item" onclick="location.href='search_condition.html'">검색 조건</a>
       <a class="index-item" onclick="location.href='order_detail.html'">주문 상세정보</a>
-      <a class="index-item active">주문상태값 매핑</a>
+      <a class="index-item active">취소 상태값 매핑</a>
       <a class="index-item" onclick="location.href='return_status_mapping.html'">반품 상태값 매핑</a>
       <a class="index-item" onclick="location.href='review_mapping.html'">구매평 매핑</a>
       <a class="index-item" onclick="location.href='exchange_management.html'">교환관리</a>
@@ -71,54 +69,52 @@
 
     <table class="mapping-table">
       <tr>
-        <th>네이버페이 코드값</th>
-        <th>네이버페이 설명</th>
-        <th>플렉스지</th>
+        <th>네이버페이 상태</th>
+        <th>조건</th>
+        <th>플렉스지 상태</th>
+        <th>플렉스지 요청구분</th>
       </tr>
       <tr>
-        <td class="code">PAYMENT_WAITING</td>
-        <td>결제 대기</td>
-        <td>미입금확인</td>
+        <td>취소 요청</td>
+        <td>입금 전</td>
+        <td>입금전취소</td>
+        <td>주문자요청 배송전</td>
       </tr>
       <tr>
-        <td class="code">PAYED</td>
-        <td>결제 완료</td>
-        <td>신규주문</td>
+        <td>취소 요청</td>
+        <td>배송 시작 전</td>
+        <td>배송전취소</td>
+        <td>주문자요청 배송전</td>
       </tr>
       <tr>
-        <td class="code">DELIVERING</td>
-        <td>배송 중</td>
-        <td>배송중</td>
-      </tr>
-      <tr>
-        <td class="code">DELIVERED</td>
-        <td>배송 완료</td>
-        <td>배송완료</td>
-      </tr>
-      <tr>
-        <td class="code">PURCHASE_DECIDED</td>
-        <td>구매 확정</td>
-        <td>배송완료</td>
-      </tr>
-      <tr>
-        <td class="code">EXCHANGED</td>
-        <td>교환</td>
-        <td>교환관리</td>
-      </tr>
-      <tr>
-        <td class="code">CANCELED</td>
-        <td>취소</td>
-        <td>주문취소</td>
-      </tr>
-      <tr>
-        <td class="code">RETURNED</td>
+        <td>취소 요청</td>
+        <td>배송 시작 후</td>
         <td>반품</td>
-        <td>반품관리</td>
+        <td>주문자요청 배송후</td>
       </tr>
       <tr>
-        <td class="code">CANCELED_BY_NOPAYMENT</td>
-        <td>미결제 취소</td>
+        <td>취소 요청</td>
+        <td>교환 요청 건</td>
+        <td>교환취소</td>
+        <td>주문자요청 배송후</td>
+      </tr>
+      <tr>
+        <td>취소 처리중</td>
+        <td>위에서 정해진 값 유지</td>
+        <td>그대로</td>
+        <td>그대로</td>
+      </tr>
+      <tr>
+        <td>취소 처리 완료</td>
+        <td>-</td>
+        <td>최종 완료</td>
         <td>주문취소</td>
+      </tr>
+      <tr>
+        <td>취소 철회</td>
+        <td>-</td>
+        <td>취소 취소됨</td>
+        <td>이전 상태 복귀</td>
       </tr>
     </table>
 

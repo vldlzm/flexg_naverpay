@@ -1,0 +1,5 @@
+node_modules/
+extract_pdf.mjs
+extract_pdf.cjs
+package.json
+package-lock.json

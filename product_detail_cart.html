@@ -40,8 +40,10 @@
   .btn-npay { display: inline-flex; align-items: center; gap: 6px; background: #00DE5A; color: #fff; border: none; border-radius: 4px; padding: 10px 20px; font-size: 15px; font-weight: bold; cursor: pointer; }
   .btn-npay .n-badge { display: inline-flex; align-items: center; justify-content: center; background: #fff; color: #00DE5A; font-weight: 900; font-size: 13px; width: 20px; height: 20px; border-radius: 3px; }
   .btn-zzim { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1px solid #e0e0e0; border-radius: 4px; background: #fff; font-size: 13px; color: #333; cursor: pointer; }
-  .btn-n-icon { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1px solid #e0e0e0; border-radius: 4px; background: #fff; cursor: pointer; }
-  .btn-n-icon .n-symbol { font-weight: 900; font-size: 16px; color: #333; }
+  .btn-n-icon { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1px solid #e0e0e0; border-radius: 4px; background: #fff; cursor: pointer; position: relative; }
+  .btn-n-icon .speech-bubble { position: relative; background: #fff; border: 1.5px solid #333; border-radius: 6px; width: 26px; height: 22px; display: flex; align-items: center; justify-content: center; }
+  .btn-n-icon .speech-bubble::after { content: ''; position: absolute; bottom: -5px; left: 5px; width: 6px; height: 5px; background: #fff; border-right: 1.5px solid #333; border-bottom: 1.5px solid #333; transform: skewX(-20deg); }
+  .btn-n-icon .n-symbol { font-weight: 900; font-size: 11px; color: #333; line-height: 1; }
 </style>
 </head>
 <body>
@@ -69,7 +71,7 @@
       <div class="button-group">
         <button class="btn-npay"><span class="n-badge">N</span> pay 구매</button>
         <button class="btn-zzim">찜</button>
-        <button class="btn-n-icon"><span class="n-symbol">N</span></button>
+        <button class="btn-n-icon"><span class="speech-bubble"><span class="n-symbol">N</span></span></button>
       </div>
 
       <div class="button-group" style="margin-top: 16px;">

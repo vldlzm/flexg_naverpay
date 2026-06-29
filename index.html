@@ -32,10 +32,7 @@
 
   /* 우측 패널 고정 콘텐츠 */
   .panel-fixed { padding: 0 16px; }
-  .panel-fixed .panel-btn { display: block; width: 100%; padding: 9px 12px; margin-bottom: 8px; font-size: 12px; font-family: inherit; font-weight: bold; color: #fff; background: #03c75a; border: none; border-radius: 4px; cursor: pointer; text-align: center; text-decoration: none; }
-  .panel-fixed .panel-btn:hover { background: #02b350; text-decoration: none; }
-  .panel-fixed .panel-section-title { font-size: 11px; font-weight: bold; color: #888; margin-top: 20px; margin-bottom: 8px; }
-  .panel-fixed .panel-link { display: block; font-size: 11px; color: #03c75a; word-break: break-all; margin-bottom: 6px; line-height: 1.6; }
+  .panel-fixed .panel-text { font-size: 12px; color: #555; line-height: 1.7; margin-bottom: 12px; word-break: break-all; }
 
   /* 페이지 타이틀 */
   .page-title { font-size: 20px; font-weight: bold; color: #222; padding-bottom: 14px; border-bottom: 1px solid #ddd; margin-bottom: 20px; }
@@ -579,13 +576,12 @@
       <div class="desc-text" id="desc-text"></div>
     </div>
     <div class="panel-fixed">
-      <a class="panel-btn" href="https://naverfincorp.com/" target="_blank">홈페이지 바로가기</a>
-      <a class="panel-btn" href="#" target="_blank">네이버페이(주문형) 가이드 보기</a>
-      <a class="panel-btn" href="https://admin.pay.naver.com/front/m/v2" target="_blank">주문형 네이버페이 신청</a>
-
-      <div class="panel-section-title">콘텐츠 참조 자료</div>
-      <a class="panel-link" href="https://campaign-cdn.pstatic.net/nfs/commonParam/naverpayguide_files/20260528121706_607725cef09f39bff9bdbc5a67c59896.pdf" target="_blank">naverpayguide_20260528.pdf</a>
-      <a class="panel-link" href="https://campaign-cdn.pstatic.net/nfs/commonParam/naverpayguide_files/20260527154511_6ad540e100d0be299a062dcb13ff72ab.pdf" target="_blank">naverpayguide_20260527.pdf</a>
+      <p class="panel-text">[button] 홈페이지 바로가기<br>https://naverfincorp.com/ 로 새창 연결</p>
+      <p class="panel-text">[button] 네이버페이(주문형) 가이드 보기<br>신규생성될 플렉스지 노션 가이드로 새창 연결</p>
+      <p class="panel-text">[button] 주문형 네이버페이 신청<br>https://admin.pay.naver.com/front/m/v2 로 새창 연결</p>
+      <p class="panel-text" style="margin-top: 16px; font-weight: bold;">콘텐츠 참조 자료</p>
+      <p class="panel-text">https://campaign-cdn.pstatic.net/nfs/commonParam/naverpayguide_files/20260528121706_607725cef09f39bff9bdbc5a67c59896.pdf</p>
+      <p class="panel-text">https://campaign-cdn.pstatic.net/nfs/commonParam/naverpayguide_files/20260527154511_6ad540e100d0be299a062dcb13ff72ab.pdf</p>
     </div>
   </aside>
 

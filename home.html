@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>홈 - 네이버페이</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; font-size: 13px; color: #333; background: #fff; }
+  a { color: #03c75a; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* 3열 레이아웃 */
+  .layout-wrap { display: flex; max-width: 2000px; margin: 0 auto; min-height: 100vh; }
+  .sidebar-left { width: 140px; min-width: 140px; border-right: 1px solid #e0e0e0; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; background: #fafafa; flex-shrink: 0; }
+  .sidebar-right { display: none; width: 240px; min-width: 240px; border-left: 1px solid #e0e0e0; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; background: #fafafa; flex-shrink: 0; }
+  .page-wrap { flex: 1; overflow-y: auto; min-width: 0; }
+
+  /* 인덱스 */
+  .index-label { font-size: 11px; font-weight: bold; color: #aaa; padding: 0 16px 10px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .index-item { display: block; padding: 7px 16px; font-size: 13px; color: #555; cursor: pointer; border-left: 3px solid transparent; transition: all 0.15s; text-decoration: none; }
+  .index-item:hover { color: #03c75a; background: #f0faf5; text-decoration: none; }
+  .index-item.active { color: #03c75a; font-weight: bold; border-left-color: #03c75a; background: #f0faf5; }
+
+  /* 화면설명 패널 */
+  .panel-label { font-size: 11px; font-weight: bold; color: #aaa; padding: 0 16px 10px; letter-spacing: 0.5px; text-transform: uppercase; }
+  #screen-desc { display: none; padding: 0 16px; }
+  #screen-desc.visible { display: block; }
+  #screen-desc .desc-name { font-size: 13px; font-weight: bold; color: #03c75a; margin-bottom: 8px; }
+  #screen-desc .desc-text { font-size: 12px; color: #666; line-height: 1.8; }
+
+  /* 홈 화면 영역 (배경 딤 처리로 알럿 강조) */
+  .home-stage { position: relative; min-height: 100vh; background: #ddd; display: flex; align-items: center; justify-content: center; }
+
+  /* 알럿 */
+  .alert-box { width: 360px; background: #fff; border-radius: 8px; box-shadow: 0 6px 24px rgba(0,0,0,0.2); overflow: hidden; text-align: center; }
+  .alert-body { padding: 32px 28px 24px; }
+  .alert-message { font-size: 14px; color: #333; line-height: 1.7; }
+  .alert-actions { border-top: 1px solid #eee; }
+  .alert-btn { display: block; width: 100%; padding: 14px; background: #fff; border: none; font-family: inherit; font-size: 14px; font-weight: bold; color: #03c75a; cursor: pointer; }
+</style>
+</head>
+<body>
+<div class="layout-wrap">
+
+  <!-- 좌측 인덱스 -->
+  <aside class="sidebar-left">
+    <div class="index-label">Index</div>
+    <nav>
+      <a class="index-item active">홈</a>
+      <a class="index-item" onclick="location.href='index.html'">주문형 네이버페이란?</a>
+      <a class="index-item" onclick="location.href='product_edit.html'">상품등록/수정</a>
+      <a class="index-item" onclick="location.href='product_detail_cart.html'">상품상세/장바구니</a>
+      <a class="index-item" onclick="location.href='search_condition.html'">검색 조건</a>
+      <a class="index-item" onclick="location.href='order_detail.html'">주문 상세정보</a>
+<a class="index-item" onclick="location.href='process.html'">사용자 프로세스</a>
+    </nav>
+  </aside>
+
+  <!-- 중앙 메인 -->
+  <div class="page-wrap">
+
+    <div class="home-stage">
+      <div class="alert-box">
+        <div class="alert-body">
+          <p class="alert-message">네이버페이 이용이 정지되었습니다.<br>네이버페이센터에서 사유를 확인해 주세요.</p>
+        </div>
+        <div class="alert-actions">
+          <button type="button" class="alert-btn">확인</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /page-wrap -->
+
+  <!-- 우측 화면설명 -->
+  <aside class="sidebar-right">
+    <div class="panel-label">화면설명</div>
+    <div id="screen-desc">
+      <div class="desc-name" id="desc-name"></div>
+      <div class="desc-text" id="desc-text"></div>
+    </div>
+  </aside>
+
+</div><!-- /layout-wrap -->
+</body>
+</html>

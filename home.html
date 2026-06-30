@@ -33,11 +33,14 @@
   .home-stage { position: relative; min-height: 100vh; background: #ddd; display: flex; align-items: center; justify-content: center; }
 
   /* 알럿 */
-  .alert-box { width: 360px; background: #fff; border-radius: 8px; box-shadow: 0 6px 24px rgba(0,0,0,0.2); overflow: hidden; text-align: center; }
-  .alert-body { padding: 32px 28px 24px; }
-  .alert-message { font-size: 14px; color: #333; line-height: 1.7; }
-  .alert-actions { border-top: 1px solid #eee; }
-  .alert-btn { display: block; width: 100%; padding: 14px; background: #fff; border: none; font-family: inherit; font-size: 14px; font-weight: bold; color: #03c75a; cursor: pointer; }
+  .alert-box { width: 420px; background: #fff; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); overflow: hidden; }
+  .alert-title { display: flex; align-items: center; gap: 8px; background: #22262e; color: #fff; padding: 16px 20px; font-size: 15px; font-weight: bold; }
+  .alert-title .alert-icon { font-size: 15px; }
+  .alert-body { padding: 36px 28px; text-align: center; }
+  .alert-message { font-size: 14px; color: #333; line-height: 1.8; }
+  .alert-actions { display: flex; gap: 10px; padding: 0 24px 24px; }
+  .alert-btn { flex: 1; padding: 13px; border-radius: 6px; border: none; font-family: inherit; font-size: 14px; font-weight: bold; cursor: pointer; }
+  .alert-btn.confirm { background: #22262e; color: #fff; }
 </style>
 </head>
 <body>
@@ -62,11 +65,12 @@
 
     <div class="home-stage">
       <div class="alert-box">
+        <div class="alert-title"><span class="alert-icon">🔒</span><span>알림</span></div>
         <div class="alert-body">
           <p class="alert-message">네이버페이 이용이 정지되었습니다.<br>네이버페이센터에서 사유를 확인해 주세요.</p>
         </div>
         <div class="alert-actions">
-          <button type="button" class="alert-btn">확인</button>
+          <button type="button" class="alert-btn confirm">확인</button>
         </div>
       </div>
     </div>
